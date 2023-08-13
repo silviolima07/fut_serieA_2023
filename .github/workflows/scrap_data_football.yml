@@ -40,4 +40,4 @@ jobs:
     - uses: actions/download-artifact@v1
       with:
           name: dados_2012_2023.csv
-          path: CSV    
+          path: .    
