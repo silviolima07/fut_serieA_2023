@@ -39,7 +39,12 @@ jobs:
              message: "chore(generated): update generated csv automatically"
              default_author: github_actions
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v1
       with:
              name: dados_2012_2023.csv
              path: CSV
+    - uses: actions/download-artifact@v1
+      with:
+          name: dados_2012_2023.csv
+          path: .    
+        
