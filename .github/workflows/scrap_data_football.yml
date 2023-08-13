@@ -26,6 +26,6 @@ jobs:
     - name: Install lib bs4
       run: pip install bs4
       
-    - name: do_crap_football
+    - name: do_scrap_football
       run: |
           pwd;ls;cd SCRIPT;python scrap_data_football.py
