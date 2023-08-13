@@ -65,5 +65,6 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: dados_2012_2023.csv
+        path: CSV
           
         
