@@ -57,10 +57,10 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
              name: dados_2012_2023.csv
-             path: CSV
+             path: .
     - uses: actions/download-artifact@v1
       with:
           name: dados_2012_2023.csv
-          path: CSV  
+          path: . 
           
         
