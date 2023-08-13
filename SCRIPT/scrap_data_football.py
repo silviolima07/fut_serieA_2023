@@ -102,7 +102,7 @@ def get_resultados(time, df):
             # Jogo em casa
             vitorias    = int(vitorias + 1)
             placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- VITORIA em CASA -->", placar)
+            #print("\n",row['Season'],"- VITORIA em CASA -->", placar)
             lista_placar_v.append(placar) # Placar da vitoria em  casa
             lista_v.append(row['Away']) # Time visitante que perdeu
         elif row['Away'] == time and row['AG'] > row['HG']:
@@ -110,7 +110,7 @@ def get_resultados(time, df):
             vitorias    = int(vitorias + 1)
             lista_v.append(row['Home']) # Time da casa que perdeu
             placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- VITORIA FORA de CASA -->", placar)
+            #print("\n",row['Season'],"- VITORIA FORA de CASA -->", placar)
             lista_placar_v.append(placar) # Placar da vitoria como visitane
 
         # DERROTAS
@@ -119,14 +119,14 @@ def get_resultados(time, df):
             derrotas     = int(derrotas + 1)
             lista_d.append(row['Away'])
             placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- DERROTA em CASA -->", placar)
+            #print("\n",row['Season'],"- DERROTA em CASA -->", placar)
             lista_placar_d.append(placar) # Placar da derrota em casa
         elif row['Away'] == time and row['AG'] < row['HG']:
             # Jogo como visitante
             derrotas     = int(derrotas + 1)
             lista_d.append(row['Home'])# Time da casa que ganhou
             placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- DERROTA FORA de  CASA -->", placar)
+            #print("\n",row['Season'],"- DERROTA FORA de  CASA -->", placar)
             lista_placar_d.append(placar)
 
         # EMPATES
@@ -135,7 +135,7 @@ def get_resultados(time, df):
             empates = int(empates +1)
             lista_e.append(row['Away']) # Time visitante com quem empatou
             placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- EMPATE em CASA -->", placar)
+            #print("\n",row['Season'],"- EMPATE em CASA -->", placar)
             lista_placar_e.append(placar) # Placar do empate em casa
 
         elif row['Away'] == time and row['HG'] == row['AG'] and row['Res'] == 'D':
@@ -143,7 +143,7 @@ def get_resultados(time, df):
             empates = int(empates +1)
             lista_e.append(row['Home']) # Time da casa com quem empatou
             placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- EMPATE FORA de CASA -->", placar)
+            #print("\n",row['Season'],"- EMPATE FORA de CASA -->", placar)
             lista_placar_e.append(placar)
 
         jogo = jogo +1
@@ -151,21 +151,21 @@ def get_resultados(time, df):
 
     pontos = vitorias*3 + empates
     #print(time.upper())
-    print("\tTotal vitorias",int(vitorias))
+    #print("\tTotal vitorias",int(vitorias))
     lista_v = str(lista_v).replace("'",'').replace('[','').replace(']','')
-    print("\tVitoria contra:", lista_v)
+    #print("\tVitoria contra:", lista_v)
 
-    print("\tTotal derrotas:",derrotas)
+    #print("\tTotal derrotas:",derrotas)
     lista_d = str(lista_d).replace("'",'').replace('[','').replace(']','')
-    print("\tDerrota para:",lista_d)
+    #print("\tDerrota para:",lista_d)
 
-    print("\tTotal empates:",empates)
+    #print("\tTotal empates:",empates)
     lista_e = str(lista_e).replace("'",'').replace('[','').replace(']','')
-    print("\tEmpate com:",lista_e)
+    #print("\tEmpate com:",lista_e)
     #placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
     #lista_placar_e.append(placar)
 
-    print("\tPontos:", pontos)
+    #print("\tPontos:", pontos)
     return (vitorias, derrotas, empates, pontos, lista_v, lista_d, lista_e, lista_placar_v, lista_placar_d, lista_placar_e)
 
 df = get_data()
@@ -195,7 +195,7 @@ seasons = list(df['Season'])
 seasons = list(set(seasons))
 #seasons = [2023]
 for season in seasons:
-    sleep(randint(1,4))
+    sleep(randint(1,3))
 
     print("\n\nSeason:", season)
     temp_df = df.loc[df.Season == season]
@@ -256,7 +256,7 @@ df_br.sort_values(by='pontos', ascending=False)
 
 # print(lista)
 
-df_br.to_csv("CSV/dados_2012_2023.csv")
+df_br.to_csv("../CSV/dados_2012_2023.csv")
 
 
 
