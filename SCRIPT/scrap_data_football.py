@@ -246,16 +246,6 @@ df_br = pd.DataFrame(data)
 
 df_br.sort_values(by='pontos', ascending=False)
 
-# df_br.time_ganhou
-# lista = []
-
-# for i in df_br.time_ganhou:
-#   for x in i:
-#     print(x)
-#     lista.append(x)
-
-# print(lista)
-
 df_br.to_csv("../CSV/dados_2012_2023.csv")
 df_br.to_csv("CSV/dados_2012_2023.csv")
 
