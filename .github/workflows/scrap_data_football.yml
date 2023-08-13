@@ -47,10 +47,11 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v1
       with:
-             name: dados_2012_2023.csv
-             path: CSV
+             name: CSV/dados_2012_2023.csv
+             
     - uses: actions/download-artifact@v1
       with:
-          path: dados_2012_2023.csv
+          name: dados_2012_2023.csv
+          path: .
           
         
