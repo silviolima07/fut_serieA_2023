@@ -41,7 +41,7 @@ jobs:
       uses: actions/upload-artifact@v3
         with:
           name: dados_2012_2023.csv
-          path: CSV
+          path: CSV/dados_2012_2023.csv
 
     - uses: actions/upload-artifact@v1
     
