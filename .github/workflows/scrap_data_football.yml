@@ -43,10 +43,10 @@ jobs:
          name: dados_2012_2023.csv
          path: CSV 
          
-    # - uses: actions/download-artifact@v1
-    #   with:
-    #       name: dados_2012_2023.csv
-    #       path: .
+    - uses: actions/download-artifact@v1
+      with:
+          name: dados_2012_2023.csv
+          path: .
 
     # - name: Commit files
     #   run: |
