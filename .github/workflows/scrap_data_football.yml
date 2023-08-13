@@ -54,6 +54,12 @@ jobs:
           name: dados_2012_2023.csv
           path: .
 
+    - name: Download a single artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: dados_2012_2023.csv
+        path: CSV     
+
     # - name: Commit files
     #   run: |
     #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -67,11 +73,7 @@ jobs:
     #     github_token: ${{ secrets.GITHUB_TOKEN }}
     #     branch: ${{ github.ref }}     
 
-    - name: Download a single artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: dados_2012_2023.csv
-        path: CSV
+    
 
 
           
