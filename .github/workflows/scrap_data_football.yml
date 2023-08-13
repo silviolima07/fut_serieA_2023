@@ -1,4 +1,4 @@
-name: Scrap of CSV file
+name: Scrap of data
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
     # Executar todas segundas-feiras (1) e quintas-feiras (4) as 9h e 18h
     #- cron:  '5 12,21 * * 1,4'
 jobs:
-  scrap_data_football:
+  scrap_football_data:
 
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +26,6 @@ jobs:
     - name: Install lib bs4
       run: pip install bs4
       
-    - name: app_football
+    - name: do_crap_football
       run: |
           pwd;ls;cd SCRIPT;python scrap_data_football.py
