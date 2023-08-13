@@ -201,7 +201,7 @@ for season in seasons:
     temp_df = df.loc[df.Season == season]
     times = list(temp_df['Home'])
     times = list(set(times))
-    times = ['Santos'] # Para testar com apenas um time
+    times = ['Santos', 'Gremio', 'Bahia'] # Para testar com apenas um time
     n=1
 
     for time in times:
