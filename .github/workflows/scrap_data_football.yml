@@ -7,7 +7,7 @@ on:
     # Executar todas segundas-feiras (1) e quintas-feiras (4) as 9h e 18h
     #- cron:  '5 12,21 * * 1,4'
 jobs:
-  scrap_data:
+  scrap_data_football:
 
     runs-on: ubuntu-latest
     steps:
@@ -22,6 +22,9 @@ jobs:
         pip install pandas
     - name: Install lib requests
       run: pip install requests
+      
+    - name: Install lib bs4
+      run: pip install bs4
       
     - name: app_football
       run: |
