@@ -51,7 +51,6 @@ jobs:
              path: CSV
     - uses: actions/download-artifact@v1
       with:
-          name: dados_2012_2023.csv
-          path: .
+          path: dados_2012_2023.csv
           
         
