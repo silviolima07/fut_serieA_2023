@@ -37,6 +37,12 @@ jobs:
         repository: ${{ github.event.pull_request.head.repo.fut_serieA_2023 }}
         ref: ${{ github.event.pull_request.head.ref }}
 
+    - name: Teste com upload artifactv3
+      uses: actions/upload-artifact@v3
+        with:
+          name: dados_2012_2023.csv
+          path: CSV
+
     - uses: actions/upload-artifact@v1
     
       with:
