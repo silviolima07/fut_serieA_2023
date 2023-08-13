@@ -25,4 +25,4 @@ jobs:
       
     - name: app_football
       run: |
-          pwd;ls;python scrap_data.py
+          pwd;ls;cd SCRIPT;python scrap_data_football.py
