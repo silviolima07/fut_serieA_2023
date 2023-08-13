@@ -31,7 +31,7 @@ jobs:
           pwd;ls;cd SCRIPT;python scrap_football_data.py
 
     - name: upload tabela csv
-      run:  pwd;ls -l;cp dados_2012_2023.csv CSV; ls CSV
+      run:  pwd;ls SCRIPT; ls CSV
     - uses: actions/upload-artifact@v1
       with:
          name: dados_2012_2023.csv
