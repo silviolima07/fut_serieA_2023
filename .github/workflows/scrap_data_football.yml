@@ -28,7 +28,8 @@ jobs:
       
     - name: do_scrap_football
       run: |
-          pwd;ls;cd SCRIPT;python scrap_football_data.py
+          pwd;ls -l;cd SCRIPT;python scrap_football_data.py
+          ls -l
           
     - name: Checkout Repository
       uses: actions/checkout@v3 
@@ -38,6 +39,7 @@ jobs:
         ref: ${{ github.event.pull_request.head.ref }}
 
     - name: Teste com upload artifactv3
+        
       uses: actions/upload-artifact@v3
       with:
           name: dados_2012_2023.csv
