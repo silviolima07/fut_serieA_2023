@@ -256,7 +256,9 @@ df_br.sort_values(by='pontos', ascending=False)
 
 # print(lista)
 
-df_br.to_csv("../../CSV/dados_2012_2023.csv")
+df_br.to_csv("../CSV/dados_2012_2023.csv")
+df_br.to_csv("CSV/dados_2012_2023.csv")
+
 
 
 
