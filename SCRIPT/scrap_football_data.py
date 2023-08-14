@@ -219,8 +219,8 @@ for season in seasons:
         int_derrotas.append(derrotas)
         int_empates.append(empates)
         int_pontos.append(pontos)
-        #l_vitorias.append([lista_v])
-        l_vitorias = lista_v
+        l_vitorias.append([lista_v])
+        
         l_derrotas.append([lista_d])
         l_empates.append([lista_e])
         l_placar_v.append(lista_placar_v)
@@ -249,6 +249,7 @@ df_br.sort_values(by='pontos', ascending=False)
 print("Dataset df_br:", df_br.shape)
 print("Dataset df_br:", df_br.columns)
 
+df_br.times.replace('Atletico-PR', 'Athletico-PR', inplace=True)
 df_br.to_csv("CSV/dados_2012_2023.csv")
 
 
