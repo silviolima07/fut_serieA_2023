@@ -246,9 +246,10 @@ df_br = pd.DataFrame(data)
 
 df_br.sort_values(by='pontos', ascending=False)
 
-print(df_br.shape)
+print("Dataset df_br:", df_br.shape)
+print("Dataset df_br:", df_br.columns)
 
-df_br.to_csv("../CSV/dados_2012_2023.csv")
+df_br.to_csv("CSV/dados_2012_2023.csv")
 
 
 
