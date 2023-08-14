@@ -371,7 +371,7 @@ def main():
     
     st.sidebar.image(logo_seriea,caption="", width=300)
 
-    activities = ["Classificação Atual",'Campanhas 2012 a 2023',"Sobre"]
+    activities = ["Classificação Atual",'Campanhas 2012 a 2023',"Resumo","Sobre"]
     lista_CD= []
     lista_AD=[]
     lista_EML=[]
@@ -418,11 +418,8 @@ def main():
 
     
     
-    width = 100
-    width0 = 140
-    width1 = 120
-    width2 = 120
-    width_reb = 90
+  
+    
     
     if choice == activities[0]:
         
@@ -432,11 +429,28 @@ def main():
     </div>
               """
         st.markdown(html_page_activiy_0, unsafe_allow_html=True)
+        
+        #width = 100
+        #width0 = 140
+        #width1 = 120
+        #width2 = 120
+        #width_reb = 90
+    
+        size_1= st.sidebar.slider('Primeiro', 80, 110, 80)
+    
+        size_2_20= st.sidebar.slider("2 a 20", 50,80)
+    
+        extra = 20
+        extra_reb = 10
 
         
         #df = pd.read_csv("CSV/dados_2012_2023.csv")
-        df_2023 = df.loc[df.season == 2023].sort_values(by= 'pontos', ascending=False)
+        saldo_gols = df['gols_marcados'] - df['gols_levados']
+        df['saldo_gols'] = saldo_gols
+        df_2023 = df.loc[df.season == 2023].sort_values(by= ['pontos','saldo_gols'], ascending=False)
         l_posicao = list(df_2023.times)
+        
+        #st.dataframe(df_2023[['times', 'pontos', 'saldo_gols']])
 
        
         col1, col2 = st.columns(2)
@@ -447,67 +461,68 @@ def main():
         
         
         #col_teste1.header(l_posicao[0])
-        col_teste1.image(dict_times.get(l_posicao[0]), width=width0)
+        col_teste1.text("Primeiro")
+        col_teste1.image(dict_times.get(l_posicao[0]), width=size_1+extra)
         
         #col_teste2.header(l_posicao[1])
         col_teste1.text("Segundo")
-        col_teste1.image(dict_times.get(l_posicao[1]), width=width1)
+        col_teste1.image(dict_times.get(l_posicao[1]), width=size_2_20+extra)
 
         #col_teste2.header(l_posicao[2])
         col_teste1.text("Terceiro")
-        col_teste1.image(dict_times.get(l_posicao[2]), width=width1)
+        col_teste1.image(dict_times.get(l_posicao[2]), width=size_2_20+extra)
 
         #col_teste2.header(l_posicao[3])
         col_teste1.text("Quarto")
-        col_teste1.image(dict_times.get(l_posicao[3]), width=width)
+        col_teste1.image(dict_times.get(l_posicao[3]), width=size_2_20+extra)
         
         #col_teste2.header(l_posicao[4])
         col_teste1.text("Quinto")
-        col_teste1.image(dict_times.get(l_posicao[4]), width=width)
+        col_teste1.image(dict_times.get(l_posicao[4]), width=size_2_20+extra)
         
         #col_teste2.header(l_posicao[5])
         col_teste1.text("Sexto")
-        col_teste1.image(dict_times.get(l_posicao[5]), width=width)
+        col_teste1.image(dict_times.get(l_posicao[5]), width=size_2_20+extra)
         
         #col_teste2.header(l_posicao[6])
         col_teste2.text("Setimo")
-        col_teste2.image(dict_times.get(l_posicao[6]), width=width)
+        col_teste2.image(dict_times.get(l_posicao[6]), width=size_2_20+extra)
         
         #col_teste2.header(l_posicao[7])
         col_teste2.text("Oitavo")
-        col_teste2.image(dict_times.get(l_posicao[7]), width=width)
+        col_teste2.image(dict_times.get(l_posicao[7]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[8])
         col_teste2.text("Nono")
-        col_teste2.image(dict_times.get(l_posicao[8]), width=width)
+        col_teste2.image(dict_times.get(l_posicao[8]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[9])
         col_teste2.text("Decimo")
-        col_teste2.image(dict_times.get(l_posicao[9]), width=width)
+        col_teste2.image(dict_times.get(l_posicao[9]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[10])
         col_teste2.text("Decimo Primeiro")
-        col_teste2.image(dict_times.get(l_posicao[10]), width=width)
+        col_teste2.image(dict_times.get(l_posicao[10]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[11])
         col_teste3.text("Decimo Segundo")
-        col_teste3.image(dict_times.get(l_posicao[11]), width=width)
+        col_teste3.image(dict_times.get(l_posicao[11]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[12])
         col_teste3.text("Decimo Terceiro")
-        col_teste3.image(dict_times.get(l_posicao[12]), width=width)
+        col_teste3.image(dict_times.get(l_posicao[12]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[13])
         col_teste3.text("Decimmo Quarto")
-        col_teste3.image(dict_times.get(l_posicao[13]), width=width)
+        col_teste3.image(dict_times.get(l_posicao[13]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[14])
         col_teste3.text("Decimo Quinto")
-        col_teste3.image(dict_times.get(l_posicao[14]), width=width)
+        col_teste3.image(dict_times.get(l_posicao[14]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[15])
         col_teste3.text("Decimmo Sexto")
-        col_teste3.image(dict_times.get(l_posicao[15]), width=width)
+        col_teste3.image(dict_times.get(l_posicao[15]), width=size_2_20+extra)
         
         
         # Ultimos 4 times
@@ -515,21 +530,21 @@ def main():
         #col_teste4.header('Zona de Rebaixamento: '+l_posicao[16])
         col_teste4.header('Zona de Rebaixamento: ')
         col_teste4.text("Decimmo Setimo")
-        col_teste4.image(dict_times.get(l_posicao[16]), width=width_reb)
+        col_teste4.image(dict_times.get(l_posicao[16]), width=size_2_20+extra_reb)
         
         
         #col_teste4.header(l_posicao[17])
         col_teste4.text("Decimmo Oitavo")
-        col_teste4.image(dict_times.get(l_posicao[17]), width=width_reb)
+        col_teste4.image(dict_times.get(l_posicao[17]), width=size_2_20+extra_reb)
         
         #col_teste4.header(l_posicao[18])
         col_teste4.text("Decimmo Nono")
-        col_teste4.image(dict_times.get(l_posicao[18]), width=width_reb)
+        col_teste4.image(dict_times.get(l_posicao[18]), width=size_2_20+extra_reb)
     
     
         #col_teste4.header(l_posicao[19])
         col_teste4.text("Vigesimo")
-        col_teste4.image(dict_times.get(l_posicao[19]), width=80)
+        col_teste4.image(dict_times.get(l_posicao[19]), width=size_2_20+extra_reb)
     
         
     
@@ -725,7 +740,36 @@ def main():
         if (flag_placar_empate):
           col2222.header('Placar Empates')            
         
-  
+    elif choice == activities[2]:
+        html_page_resumo = """
+    <div style="background-color:white;padding=30px">
+        <p style='text-align:left;font-size:30px;font-weight:bold;color:red'>Resumo de Participações (2012 a 2023)</p>
+    </div>
+              """
+        st.markdown(html_page_resumo, unsafe_allow_html=True)
+        
+        lista_times = list(set(df['times']))
+        gols_marcados = []
+        gols_tomados = []
+        total_gols = 0
+        for time in lista_times:
+            temp = df.loc[df.times == time]
+            gols_pro = temp.gols_marcados.sum()
+            gols_marcados.append(gols_pro)
+
+            gols_levados = temp.gols_levados.sum()
+            gols_tomados.append(gols_levados)
+
+            total_gols = total_gols + gols_pro
+            #print("\nTime:", time, "Gols marcados:", gols_pro)
+
+        data = {'TIME': lista_times, 'GOLS_MARCADOS':gols_marcados, 'GOLS_TOMADOS': gols_tomados}
+        df_geral = pd.DataFrame(data).sort_values(by='GOLS_MARCADOS', ascending=False)
+        
+        st.sidebar.markdown(" ## Total de Gols:    "+ str(total_gols))
+    
+        st.table(df_geral.reset_index(drop=True))
+    
     elif choice == 'Sobre':
         html_page_about = """
     <div style="background-color:white;padding=30px">
