@@ -62,16 +62,16 @@ jobs:
           name: dados_2012_2023.csv
           path: CSV
 
-    # - uses: actions/upload-artifact@v1
-    #   with:
-    #      name: dados_2012_2023.csv
-    #      path: CSV 
-         
-    - name: teste download 1
-      uses: actions/download-artifact@v3
+    - uses: actions/upload-artifact@v1
       with:
-          name: dados_2012_2023.csv
-          path: .
+         name: dados_2012_2023.csv
+         path: CSV 
+         
+    # - name: teste download 1
+    #   uses: actions/download-artifact@v3
+    #   with:
+    #       name: dados_2012_2023.csv
+    #       path: .
 
     # - name: Download a single artifact
     #   uses: actions/download-artifact@v3
