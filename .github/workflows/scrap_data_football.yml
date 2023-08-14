@@ -47,12 +47,25 @@ jobs:
           pwd;ls -l SCRIPT; ls -l CSV
 
 
-    - name: Teste com upload artifactv3
-        
-      uses: actions/upload-artifact@v3
+    - name: Checkout
+      uses: actions/checkout@v2
+      # Setup node first
+    - name: Setup node
+      uses: actions/setup-node@v1
+    - name: Upload to GitHub
+      uses: silviolima07/github-upload-action@v0.1.0
       with:
-          name: dados_2012_2023.csv
-          path: CSV
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+          file-path: CSV
+          owner: silviolima07
+          repo: fut_serieA_2023
+          remote-dir: CSV
+    # - name: Teste com upload artifactv3
+        
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #       name: dados_2012_2023.csv
+    #       path: CSV
 
     # - uses: actions/upload-artifact@v1
     #   with:
@@ -65,24 +78,24 @@ jobs:
     #       name: dados_2012_2023.csv
     #       path: .
 
-    - name: Download a single artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: dados_2012_2023.csv
-        path: CSV   
+    # - name: Download a single artifact
+    #   uses: actions/download-artifact@v3
+    #   with:
+    #     name: dados_2012_2023.csv
+    #     path: CSV   
 
-    - name: Commit files
-      run: |
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -a -m "Add changes"
-        pwd;ls -l
+    # - name: Commit files
+    #   run: |
+    #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    #     git config --local user.name "github-actions[bot]"
+    #     git commit -a -m "Add changes"
+    #     pwd;ls -l
         
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}     
+    # - name: Push changes
+    #   uses: ad-m/github-push-action@master
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     branch: ${{ github.ref }}     
 
     
 
