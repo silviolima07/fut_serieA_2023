@@ -308,12 +308,12 @@ def main():
     #          """
     #st.markdown(html_indeed, unsafe_allow_html=True)
    
-    html_page = """
-    <div style="background-color:white;padding=30px">
-        <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>CAMPEONATO BRASILEIRO de 2012 a 2023</p>
-    </div>
-              """
-    st.markdown(html_page, unsafe_allow_html=True)
+    #html_page = """
+    #<div style="background-color:white;padding=30px">
+    #    <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>Campeonato Brasileiro de 2012 a 2023</p>
+    #</div>
+    #          """
+    #st.markdown(html_page, unsafe_allow_html=True)
 
    
     
@@ -371,7 +371,7 @@ def main():
     
     st.sidebar.image(logo_seriea,caption="", width=300)
 
-    activities = ["Classificação Atual",'Campanhas 2012 a 2023',"About"]
+    activities = ["Classificação Atual",'Campanhas 2012 a 2023',"Sobre"]
     lista_CD= []
     lista_AD=[]
     lista_EML=[]
@@ -425,7 +425,14 @@ def main():
     width_reb = 90
     
     if choice == activities[0]:
-        #st.subheader('Classificação Atual')
+        
+        html_page_activiy_0 = """
+    <div style="background-color:white;padding=30px">
+        <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>Classificação Atual</p>
+    </div>
+              """
+        st.markdown(html_page_activiy_0, unsafe_allow_html=True)
+
         
         #df = pd.read_csv("CSV/dados_2012_2023.csv")
         df_2023 = df.loc[df.season == 2023].sort_values(by= 'pontos', ascending=False)
@@ -528,6 +535,13 @@ def main():
     
     
     elif choice == activities[1]: # campanhas 2012  2023
+    
+        html_page_activiy_1 = """
+    <div style="background-color:white;padding=30px">
+        <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>Campeonato Brasileiro de 2012 A 2023</p>
+    </div>
+              """
+        st.markdown(html_page_activiy_1, unsafe_allow_html=True)
                 
         usecols = ['season', 'times', 'pontos', 'gols_marcados', 'gols_levados', 'vitorias', 'derrotas', 'empates',
                    'time_ganhou', 'time_derrota', 'time_empate', 'placar_vitoria', 'placar_derrota', 'placar_empate']
@@ -691,7 +705,13 @@ def main():
                         
         
   
-    elif choice == 'About':
+    elif choice == 'Sobre':
+        html_page_about = """
+    <div style="background-color:white;padding=30px">
+        <p style='text-align:left;font-size:30px;font-weight:bold;color:red'>Saiba mais...</p>
+    </div>
+              """
+        st.markdown(html_page_about, unsafe_allow_html=True)
         
         st.subheader("Built with Streamlit")
         
