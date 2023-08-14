@@ -28,22 +28,22 @@ jobs:
       
     - name: do_scrap_football
       run: |
-          pwd;ls -l;cd SCRIPT;python scrap_football_data.py; cd ../CSV; pwd; ls -l
+          pwd;touch SCRIPT/teste_script;ls -l SCRIPT;python SCRIPT/scrap_football_data.py; touch CSV/teste_csv; ls -l CSV
         
-    - name: check if csv was created
-      run: |
-          pwd; touch SCRIPT/teste_script; ls -l SCRIPT ; touch CSV/teste_csv; ls -l
+    # - name: check if csv was created
+    #   run: |
+    #       pwd; touch SCRIPT/teste_script; ls -l SCRIPT ; touch CSV/teste_csv; ls -l
           
-    - name: Checkout Repository
-      uses: actions/checkout@v3 
-      with:
-        persist-credentials: false
-        repository: ${{ github.event.pull_request.head.repo.fut_serieA_2023 }}
-        ref: ${{ github.event.pull_request.head.ref }}
+    # - name: Checkout Repository
+    #   uses: actions/checkout@v3 
+    #   with:
+    #     persist-credentials: false
+    #     repository: ${{ github.event.pull_request.head.repo.fut_serieA_2023 }}
+    #     ref: ${{ github.event.pull_request.head.ref }}
 
-    - name: check if csv was created
-      run: |
-          pwd;ls -l SCRIPT; ls -l CSV
+    # - name: check if csv was created
+    #   run: |
+    #       pwd;ls -l SCRIPT; ls -l CSV
 
 
     # - name: Checkout
@@ -82,18 +82,18 @@ jobs:
     #     path: CSV   
 
 
-    - name: Commit files
-      run: |
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -a -m "Add changes"
-        pwd;ls -l
+    # - name: Commit files
+    #   run: |
+    #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    #     git config --local user.name "github-actions[bot]"
+    #     git commit -a -m "Add changes"
+    #     pwd;ls -l
         
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}     
+    # - name: Push changes
+    #   uses: ad-m/github-push-action@master
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     branch: ${{ github.ref }}     
 
     
 
