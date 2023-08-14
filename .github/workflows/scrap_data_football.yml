@@ -28,7 +28,7 @@ jobs:
       
     - name: do_scrap_football
       run: |
-          pwd;ls -l SCRIPT;python SCRIPT/scrap_football_data.py; ls -l CSV
+          pwd;ls -l; ls -l SCRIPT;python SCRIPT/scrap_football_data.py; ls -l CSV
         
     
           
@@ -67,11 +67,11 @@ jobs:
     #      name: dados_2012_2023.csv
     #      path: CSV 
          
-    # - name: teste download 1
-    #   uses: actions/download-artifact@v3
-    #   with:
-    #       name: dados_2012_2023.csv
-    #       path: .
+    - name: teste download 1
+      uses: actions/download-artifact@v3
+      with:
+          name: dados_2012_2023.csv
+          path: .
 
     # - name: Download a single artifact
     #   uses: actions/download-artifact@v3
