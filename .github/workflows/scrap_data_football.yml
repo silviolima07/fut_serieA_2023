@@ -28,11 +28,9 @@ jobs:
       
     - name: do_scrap_football
       run: |
-          pwd;touch SCRIPT/teste_script;ls -l SCRIPT;python SCRIPT/scrap_football_data.py; touch CSV/teste_csv; ls -l CSV
+          pwd;ls -l SCRIPT;python SCRIPT/scrap_football_data.py; ls -l CSV
         
-    # - name: check if csv was created
-    #   run: |
-    #       pwd; touch SCRIPT/teste_script; ls -l SCRIPT ; touch CSV/teste_csv; ls -l
+    
           
     # - name: Checkout Repository
     #   uses: actions/checkout@v3 
@@ -57,12 +55,12 @@ jobs:
     #       owner: silviolima07
     #       repo: fut_serieA_2023
     #       remote-dir: CSV
-    # - name: Teste com upload artifactv3
+    - name: Teste com upload artifactv3
         
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #       name: dados_2012_2023.csv
-    #       path: CSV
+      uses: actions/upload-artifact@v3
+      with:
+          name: dados_2012_2023.csv
+          path: CSV
 
     # - uses: actions/upload-artifact@v1
     #   with:
