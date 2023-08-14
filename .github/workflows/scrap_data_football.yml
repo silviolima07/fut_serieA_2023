@@ -79,13 +79,22 @@ jobs:
     #     name: dados_2012_2023.csv
     #     path: CSV   
 
-    - name: Commit report
-      run: |
-          git config --global user.name 'silviolima07'
-          git config --global user.email 'silviolima07@gmail.com'
-          git add .
-          git commit -am "Updated dataset"
-          git push
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v9
+      with:
+          author_name: Silvio
+          author_email: silviolima07@gmail.com
+          message: 'Update dataset'
+          add: 'dados_2012_2023.csv'
+
+    # Quase funcionou, deu permissao de acesso ao meu git repo
+    # - name: Commit report
+    #   run: |
+    #       git config --global user.name 'silviolima07'
+    #       git config --global user.email 'silviolima07@gmail.com'
+    #       git add .
+    #       git commit -am "Updated dataset"
+    #       git push
 
     # - name: Commit files
     #   run: |
