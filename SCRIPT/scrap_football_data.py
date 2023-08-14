@@ -249,6 +249,7 @@ df_br.sort_values(by='pontos', ascending=False)
 print("Dataset df_br:", df_br.shape)
 print("Dataset df_br:", df_br.columns)
 
+df_br.times.replace('Atletico-PR', 'Athletico-PR', inplace=True)
 df_br.to_csv("CSV/dados_2012_2023.csv")
 
 
