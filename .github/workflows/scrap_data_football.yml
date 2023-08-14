@@ -51,7 +51,7 @@ jobs:
       uses: actions/checkout@master
       # Repo github
     - name: Upload to github
-      uses: silviolima07/github-upload-action@v0.1.0
+      uses: actions/github-upload-action@v0.1.0
       with:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           file-path: CSV
