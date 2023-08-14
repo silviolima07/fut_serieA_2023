@@ -49,15 +49,15 @@ jobs:
 
     - name: Teste com upload artifactv3
         
-      # uses: actions/upload-artifact@v3
-      # with:
-      #     name: dados_2012_2023.csv
-      #     path: CSV
-
-    - uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       with:
-         name: dados_2012_2023.csv
-         path: CSV 
+          name: dados_2012_2023.csv
+          path: CSV
+
+    # - uses: actions/upload-artifact@v1
+    #   with:
+    #      name: dados_2012_2023.csv
+    #      path: CSV 
          
     # - name: teste download 1
     #   uses: actions/download-artifact@v3
