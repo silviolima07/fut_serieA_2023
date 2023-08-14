@@ -371,7 +371,7 @@ def main():
     
     st.sidebar.image(logo_seriea,caption="", width=300)
 
-    activities = ["Classificação",'Campanhas 2012 a 2023',"About"]
+    activities = ["Classificação Atual",'Campanhas 2012 a 2023',"About"]
     lista_CD= []
     lista_AD=[]
     lista_EML=[]
@@ -411,20 +411,21 @@ def main():
 
 
     #st.write('Atualizacao:'+str(get_version()))      
-    if choice == 'Classificação':
-        st.markdown('##### Última atualizacao:')
-        st.subheader(str(get_version()))
+    if choice == 'Classificação Atual':
+        st.sidebar.markdown('##   Última atualização dia: '+" "+str(get_version()))
+
+        
 
     
     
-    width = 110
-    width0 = 160
+    width = 100
+    width0 = 140
     width1 = 120
     width2 = 120
     width_reb = 90
     
     if choice == activities[0]:
-        st.subheader('Classificação Atual')
+        #st.subheader('Classificação Atual')
         
         #df = pd.read_csv("CSV/dados_2012_2023.csv")
         df_2023 = df.loc[df.season == 2023].sort_values(by= 'pontos', ascending=False)
