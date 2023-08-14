@@ -82,8 +82,9 @@ jobs:
     - name: Commit report
       run: |
           git config --global user.name 'silviolima07'
-          git config --global user.email 'silviolima07@users.noreply.github.com'
-          git commit -am "Automated report"
+          git config --global user.email 'silviolima07@gmail.com'
+          git add .
+          git commit -am "Updated dataset"
           git push
 
     # - name: Commit files
