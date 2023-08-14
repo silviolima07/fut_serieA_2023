@@ -591,6 +591,8 @@ def main():
         col11,  col22,  col33  = st.columns(3)
         col111, col222, col333 = st.columns(3)
         
+        col1111, col2222, col3333 = st.columns(3)
+        
 
         res = ['Vitoria', 'Derrota', 'Empate', 
                 'Lista Vitorias', 'Lista_Derrotas', 'Lista_Empates', 
@@ -651,10 +653,12 @@ def main():
             temp = pd.DataFrame(derrotas)
             temp2 = temp.time_derrota.str.split(',')
             lista = []
+            
             for i in temp2:
               for x in i:
                 x = x.replace('[','').replace(']','').replace('\\"','').replace("'",'')
                 st.subheader(x)
+               
 
              
         if (flag_empate):
@@ -702,7 +706,24 @@ def main():
               for x in i:
                 x = x.replace('[','').replace(']','').replace('\\"','').replace("'",'')
                 st.subheader(x)         
-                        
+        
+        if (flag_vitoria):
+          col2222.header('Vitórias')    
+          
+        if (flag_derrota):
+          col2222.header('Derrotas')   
+
+        if (flag_empate):
+          col2222.header('Empates')  
+
+        if (flag_placar_vitoria):
+          col2222.header('Placar Vitórias')  
+
+        if (flag_placar_derrota):
+          col2222.header('Placar Derrotas')  
+
+        if (flag_placar_empate):
+          col2222.header('Placar Empates')            
         
   
     elif choice == 'Sobre':
