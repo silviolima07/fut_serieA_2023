@@ -48,11 +48,9 @@ jobs:
 
 
     - name: Checkout
-      uses: actions/checkout@v2
-      # Setup node first
-    - name: Setup node
-      uses: actions/setup-node@v1
-    - name: Upload to GitHub
+      uses: actions/checkout@master
+      # Repo github
+    - name: Upload to github
       uses: silviolima07/github-upload-action@v0.1.0
       with:
           access-token: ${{ secrets.ACCESS_TOKEN }}
