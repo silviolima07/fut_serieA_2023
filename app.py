@@ -301,16 +301,16 @@ def main():
     """Futebol App """
 
     # Titulo do web app
-    html_indeed = """
-    <div style="background-color:blue;padding=30px">
-        <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>Futebol</p>
-    </div>
-              """
-    st.markdown(html_indeed, unsafe_allow_html=True)
+    #html_indeed = """
+    #<div style="background-color:blue;padding=30px">
+    #    <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>Futebol</p>
+    #</div>
+    #          """
+    #st.markdown(html_indeed, unsafe_allow_html=True)
    
     html_page = """
     <div style="background-color:white;padding=30px">
-        <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>Campeonato Brasileiro de 2012 a 2023</p>
+        <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>CAMPEONATO BRASILEIRO de 2012 a 2023</p>
     </div>
               """
     st.markdown(html_page, unsafe_allow_html=True)
@@ -545,17 +545,81 @@ def main():
         
         st.sidebar.image(campo,caption="",width=300)
         
-        st.subheader(str(choice_ano)+'/'+choice_time)
+        #st.subheader(str(choice_ano)+'/'+choice_time)
+        st.subheader(choice_time+' / '+str(choice_ano))
+        
         df = df.loc[(df.season == choice_ano)& (df.times == choice_time)]
-        colunas = ['pontos', 'gols_marcados', 'gols_levados', 'vitorias', 'derrotas', 'empates','time_ganhou', 'time_derrota', 'time_empate', 'placar_vitoria', 'placar_derrota', 'placar_empate']
+        colunas = ['season','pontos', 'gols_marcados', 'gols_levados', 'vitorias', 'derrotas', 'empates','time_ganhou', 'time_derrota', 'time_empate', 'placar_vitoria', 'placar_derrota', 'placar_empate']
         df = df[colunas]
         colunas_tela = ['pontos', 'gols_marcados', 'gols_levados', 'vitorias', 'derrotas', 'empates']
         temp = df[colunas_tela]
         temp.rename(columns={'pontos':'PONTOS', 'gols_marcados':'GOLS_MARCADOS', 'gols_levados':'GOLS_TOMADDOS', 'vitorias': 'VITORIAS', 'derrotas':'DERROTAS', 'empates': 'EMPATES'}, inplace=True)
-        st.dataframe(temp)
-
         
-        if st.button('Vitorias'):
+        temp = temp.reset_index(drop=True)
+        temp = temp.set_index(df['season'])
+        st.dataframe(temp)
+        
+        flag_vitoria = False
+        flag_empate = False
+        flag_derrota = False
+        
+        flag_lista_derrotas = False
+        flag_lista_empates = False
+        flag_lista_vitorias = False
+        
+        flag_placar_derrota  = False
+        flag_placar_empate = False
+        flag_placar_vitoria = False
+        
+        
+        col1,   col2,   col3   = st.columns(3)
+        col11,  col22,  col33  = st.columns(3)
+        col111, col222, col333 = st.columns(3)
+        
+
+        res = ['Vitoria', 'Derrota', 'Empate', 
+                'Lista Vitorias', 'Lista_Derrotas', 'Lista_Empates', 
+                'Placar_Vitoria', 'Placar_Derrota', 'Placar_Empate']
+        key = [1,2,3,4,5,6,7,8,9]
+                
+        with col1:
+          if(st.button(res[0], key=f'{0}')):
+            flag_vitoria = True
+            
+        with col2:
+          if(st.button(res[1], key=key[1])):
+            flag_derrota = True
+            
+        with col3:
+          if(st.button(res[2], key=key[2])):
+            flag_empate = True
+            
+        #with col11:
+        #  if(st.button(res[3], key=key[3])):
+        #    flag_lista_vitorias = True
+            
+        #with col22:
+        #  if(st.button(res[4], key=key[4])):
+        #    flag_lista_derrotas = True 
+         
+        #with col33:
+        #  if(st.button(res[5], key=key[5])):
+        #    flag_lista_empates = True 
+
+        with col111:
+          if(st.button(res[6], key=key[6])):
+            flag_placar_vitoria = True
+
+        with col222:
+          if(st.button(res[7], key=key[7])):
+            flag_placar_derrota = True
+
+        with col333:
+          if(st.button(res[8], key=key[8])):
+            flag_placar_empate = True            
+                            
+       
+        if (flag_vitoria):
             vitorias = df['time_ganhou']
           
             temp = pd.DataFrame(vitorias)
@@ -566,7 +630,7 @@ def main():
                 x = x.replace('[','').replace(']','').replace('\\"','').replace("'",'')
                 st.subheader(x)
            
-        if st.button("Derrotas"):
+        if (flag_derrota):
             derrotas = df['time_derrota']
             
             temp = pd.DataFrame(derrotas)
@@ -578,7 +642,7 @@ def main():
                 st.subheader(x)
 
              
-        if st.button("Empates"):
+        if (flag_empate):
             #st.write(df['time_empate'])
             empates = df['time_empate']
           
@@ -592,7 +656,7 @@ def main():
                
             
             
-        if st.button("Placar Vitoria"):
+        if (flag_placar_vitoria):
             vitorias = df['placar_vitoria']
             #print('TIPO:', type(empates))
             #for item in empates:
@@ -604,7 +668,7 @@ def main():
                 x = x.replace('[','').replace(']','').replace('\\"','').replace("'",'')
                 st.subheader(x)   
         
-        if st.button("Placar Derrota"):
+        if (flag_placar_derrota):
             derrota = df['placar_derrota']
             temp = pd.DataFrame(derrota)
             temp2 = temp.placar_derrota.str.split(',')
@@ -614,7 +678,7 @@ def main():
                 x = x.replace('[','').replace(']','').replace('\\"','').replace("'",'')
                 st.subheader(x) 
                 
-        if st.button("Placar Empate"):
+        if (flag_placar_empate):
             empates = df['placar_empate']
             temp = pd.DataFrame(empates)
             temp2 = temp.placar_empate.str.split(',')
@@ -624,21 +688,21 @@ def main():
                 x = x.replace('[','').replace(']','').replace('\\"','').replace("'",'')
                 st.subheader(x)         
                         
-    
+        
   
     elif choice == 'About':
         
         st.subheader("Built with Streamlit")
         
-        st.write("Dados coletados via scrap usando: request e BeautifulSoup.")
+        st.markdown("#### Dados coletados via scrap usando: request e BeautifulSoup.")
 
-        st.write("Fonte dos dados: ")
-        st.write("https://www.football-data.co.uk/")
-        st.write("As atualizações do campeonato atual ocorrem normalmente às terças-feiras, pois estão agendados jogos na segunda-feira.")
+        st.markdown("#### Fonte dos dados: ")
+        st.markdown("#### https://www.football-data.co.uk/")
+        st.markdown("#### As atualizações do campeonato atual ocorrem normalmente às terças-feiras, pois estão agendados jogos na segunda-feira.")
       
         st.subheader("Silvio Lima")
         
-        st.write('https://www.linkedin.com/in/silviocesarlima/')
+        st.markdown('#### https://www.linkedin.com/in/silviocesarlima/')
        
     
     
