@@ -14,3 +14,4 @@ Bokeh==2.2.2
 streamlit==0.81.0
 wordcloud==1.8.1
 nltk==3.5
+beautifulsoup4==4.12.2

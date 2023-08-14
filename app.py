@@ -634,6 +634,7 @@ def main():
 
         st.write("Fonte dos dados: ")
         st.write("https://www.football-data.co.uk/")
+        st.write("As atualizações do campeonato atual ocorrem normalmente às terças-feiras, pois estão agendados jogos na segunda-feira.")
       
         st.subheader("Silvio Lima")
         
