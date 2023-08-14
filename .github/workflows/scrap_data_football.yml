@@ -65,11 +65,11 @@ jobs:
     #       name: dados_2012_2023.csv
     #       path: .
 
-    # - name: Download a single artifact
-    #   uses: actions/download-artifact@v3
-    #   with:
-    #     name: dados_2012_2023.csv
-    #     path: CSV   
+    - name: Download a single artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: dados_2012_2023.csv
+        path: CSV   
 
     - name: Commit files
       run: |
