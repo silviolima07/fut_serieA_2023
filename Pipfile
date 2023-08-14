@@ -10,6 +10,7 @@ bokeh = "*"
 matplotlib = "*"
 wordcloud = "*"
 nltk = "*"
+bs4 = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.9"
