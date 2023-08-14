@@ -193,7 +193,7 @@ l_placar_e = []
 # Lista com os anos dos dados na base
 seasons = list(df['Season'])
 seasons = list(set(seasons))
-seasons = [2023]
+#seasons = [2023]
 for season in seasons:
     sleep(randint(1,3))
 
@@ -201,7 +201,7 @@ for season in seasons:
     temp_df = df.loc[df.Season == season]
     times = list(temp_df['Home'])
     times = list(set(times))
-    times = ['Santos', 'Gremio', 'Bahia'] # Para testar com apenas um time
+    #times = ['Santos', 'Gremio', 'Bahia'] # Para testar com apenas um time
     n=1
 
     for time in times:
