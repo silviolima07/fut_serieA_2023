@@ -50,12 +50,12 @@ jobs:
           path: CSV
 
     - uses: actions/upload-artifact@v1
-    
       with:
          name: dados_2012_2023.csv
          path: CSV 
          
-    - uses: actions/download-artifact@v3
+    - name: teste download 1
+      uses: actions/download-artifact@v3
       with:
           name: dados_2012_2023.csv
           path: .
@@ -64,7 +64,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: dados_2012_2023.csv
-        path: CSV     
+        path: CSV   
 
     # - name: Commit files
     #   run: |
