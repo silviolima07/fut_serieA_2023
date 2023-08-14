@@ -219,8 +219,8 @@ for season in seasons:
         int_derrotas.append(derrotas)
         int_empates.append(empates)
         int_pontos.append(pontos)
-        #l_vitorias.append([lista_v])
-        l_vitorias = lista_v
+        l_vitorias.append([lista_v])
+        
         l_derrotas.append([lista_d])
         l_empates.append([lista_e])
         l_placar_v.append(lista_placar_v)
