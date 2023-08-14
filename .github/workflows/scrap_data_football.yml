@@ -33,7 +33,7 @@ jobs:
 
     - name: check if csv was created
       run: |
-          pwd;ls -l SCRIPT; ls -l CSV
+          pwd;cd SCRIPT; touch teste_script; ls -l ; cd ../CSV; pwd; touch csv; ls -l
           
     - name: Checkout Repository
       uses: actions/checkout@v3 
