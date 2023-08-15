@@ -195,7 +195,7 @@ seasons = list(df['Season'])
 seasons = list(set(seasons))
 #seasons = [2023]
 for season in seasons:
-    sleep(randint(1,2)
+    sleep(randint(1,2))
     print("\nSeason:", season)
     temp_df = df.loc[df.Season == season]
     times = list(temp_df['Home'])
