@@ -28,8 +28,9 @@ jobs:
       
     - name: do_scrap_football
       run: |
-          #pwd;ls -l; ls -l SCRIPT;python SCRIPT/scrap_football_data.py; ls -l CSV
-          echo "Starting scrap...";python SCRIPT/scrap_football_data.py; echo "Scrap done, dataset created"; ls -l CSV
+          echo "Starting scrap..."
+          python SCRIPT/scrap_football_data.py
+          echo "Scrap done, dataset created"; ls -l CSV
           
   
     - name: Commit changes
