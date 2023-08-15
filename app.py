@@ -766,7 +766,6 @@ def main():
             empates.append(total_e)
             
             
-
             total_gols = total_gols + gols_pro
             #print("\nTime:", time, "Gols marcados:", gols_pro)
 
