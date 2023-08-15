@@ -140,8 +140,7 @@ def main():
         df_2023 = df.loc[df.season == 2023].sort_values(by= ['pontos', 'vitorias', 'saldo_gols'], ascending=False)
         l_posicao = list(df_2023.times)
         
-        st.dataframe(df_2023)
-        
+             
         #st.dataframe(df_2023[['times', 'pontos', 'saldo_gols']])
         #df_2023['pontos'] = df_2023['pontos'].astype('int')
         pontuacao = df_2023['pontos'].to_list()
