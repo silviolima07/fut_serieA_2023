@@ -444,8 +444,8 @@ def main():
         l_posicao = list(df_2023.times)
         
         #st.dataframe(df_2023[['times', 'pontos', 'saldo_gols']])
+        df_2023['pontos'] = df_2023['pontos'].astype('int')
         pontuacao = df_2023['pontos'].to_list()
-        
         col1, col2 = st.columns(2)
     
         col11, col22 = st.columns(2)
