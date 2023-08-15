@@ -794,6 +794,8 @@ def main():
         st.markdown("##### Fonte dos dados: ")
         st.markdown("##### https://www.football-data.co.uk/")
         st.markdown("##### As atualizações do campeonato atual ocorrem normalmente às terças-feiras, pois alguns times podem jogar na segunda-feira.")
+        st.markdown("##### Um script Python é executado via Git Actions, esse script faz a leitura do dataset CSV no site da página football-data.")
+        st.markdown("##### O script pode ser executado sob demanda ou agendamento.")
       
         st.subheader("Silvio Lima")
         
