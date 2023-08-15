@@ -4,9 +4,9 @@ import streamlit as st
 
 import matplotlib.pyplot as plt
 
-from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+#from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
-import nltk
+#import nltk
 
 #from bokeh.models.widgets import Div
 
@@ -16,7 +16,7 @@ from PIL import Image
 
 #pd.set_option('precision',2)
 
-import base64
+#import base64
 
 import sys
 
@@ -27,271 +27,269 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-
-
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
-def clean_desc(df):
-    desc = []
-    for line in df.Descrição:
-        words = line.replace('Postado', '').replace('há','').replace(',','').replace('dias','').replace('+ ','').replace('·','').lower().replace('(','').replace(')','')
-        line = re.sub("\d+", "", words).replace('employerativa','').replace('atrás','').replace(';','').replace('–…','').replace('…','').strip().replace('.','')
-        temp = "".join(line)
-        desc.append(temp)   
-    return desc
+# def clean_desc(df):
+    # desc = []
+    # for line in df.Descrição:
+        # words = line.replace('Postado', '').replace('há','').replace(',','').replace('dias','').replace('+ ','').replace('·','').lower().replace('(','').replace(')','')
+        # line = re.sub("\d+", "", words).replace('employerativa','').replace('atrás','').replace(';','').replace('–…','').replace('…','').strip().replace('.','')
+        # temp = "".join(line)
+        # desc.append(temp)   
+    # return desc
 
 # Python3 code to find frequency of each word
 # function for calculating the frequency
 
-def freq(str):
-    word = []
-    count_word  = []
+# def freq(str):
+    # word = []
+    # count_word  = []
   
-    # break the string into list of words
-    str_list = str.split()
+    # # break the string into list of words
+    # str_list = str.split()
   
-    # gives set of unique words
-    unique_words = set(str_list)
+    # # gives set of unique words
+    # unique_words = set(str_list)
 
-    # Lib de palavras stopwords
-    nltk.download('stopwords')
-    #
-    stopwords = nltk.corpus.stopwords.words('portuguese')
-    #stopwords = ['a','de']
+    # # Lib de palavras stopwords
+    # nltk.download('stopwords')
+    # #
+    # stopwords = nltk.corpus.stopwords.words('portuguese')
+    # #stopwords = ['a','de']
     
-    # Eliminar de lista unique_words as palavras irrelevantes tipo: de, a, em
-    dataset = unique_words
-    lista_sem_stopwords = [word for word in dataset if word not in stopwords]
+    # # Eliminar de lista unique_words as palavras irrelevantes tipo: de, a, em
+    # dataset = unique_words
+    # lista_sem_stopwords = [word for word in dataset if word not in stopwords]
     
-    for words in lista_sem_stopwords :
-        count = str_list.count(words)
-        #print('Frequency of ', words , 'is :', count)
-        word.append(words)
-        count_word.append(count)
-    return word, count_word      
+    # for words in lista_sem_stopwords :
+        # count = str_list.count(words)
+        # #print('Frequency of ', words , 'is :', count)
+        # word.append(words)
+        # count_word.append(count)
+    # return word, count_word      
 
 
-def download_link(df):
-    if isinstance(df,pd.DataFrame):
-        object_to_download = df.to_csv(index=False)
+# def download_link(df):
+    # if isinstance(df,pd.DataFrame):
+        # object_to_download = df.to_csv(index=False)
 
-    # some strings <-> bytes conversions necessary here
-    b64 = base64.b64encode(object_to_download.encode()).decode()
+    # # some strings <-> bytes conversions necessary here
+    # b64 = base64.b64encode(object_to_download.encode()).decode()
 
-    return f'<a href="data:file/txt;base64,{b64}" download="{texto1}">{texto2}</a>'
+    # return f'<a href="data:file/txt;base64,{b64}" download="{texto1}">{texto2}</a>'
 
-def get_table_download_link(df,file):
-    """Generates a link allowing the data in a given panda dataframe to be downloaded
-    in:  dataframe
-    out: href string
-    """
-    csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
-    href = f'<a href="data:file/csv;base64,{b64}" download= "{file}" >Download csv</a>'
-    return href
+# def get_table_download_link(df,file):
+    # """Generates a link allowing the data in a given panda dataframe to be downloaded
+    # in:  dataframe
+    # out: href string
+    # """
+    # csv = df.to_csv(index=False)
+    # b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+    # href = f'<a href="data:file/csv;base64,{b64}" download= "{file}" >Download csv</a>'
+    # return href
     
 
-def make_clickable(link):
-    # target _blank to open new window
-    # extract clickable text to display for your link
-    text = link
-    return f'<a target="_blank" href="{link}">Link da vaga</a>' # ou {text} e irá mostrar o link clicável
+# def make_clickable(link):
+    # # target _blank to open new window
+    # # extract clickable text to display for your link
+    # text = link
+    # return f'<a target="_blank" href="{link}">Link da vaga</a>' # ou {text} e irá mostrar o link clicável
 
 
-def wc(df):
+# def wc(df):
         
-        # Remover caracteres, palavras indesejados na coluna Descrição do dataset lido
-        desc = clean_desc(df)
-        #
+        # # Remover caracteres, palavras indesejados na coluna Descrição do dataset lido
+        # desc = clean_desc(df)
+        # #
 
-        # Une todos itens/palavras da lista com a descrição numa linha unica
-        string_desc = ' '.join([str(item) for item in desc])
+        # # Une todos itens/palavras da lista com a descrição numa linha unica
+        # string_desc = ' '.join([str(item) for item in desc])
 
-        # Cria duas listas, uma lista word com todas palavras e uma lista com a frequencia dessas palavras na descrição
-        word, count_word = freq(string_desc)
-        #
+        # # Cria duas listas, uma lista word com todas palavras e uma lista com a frequencia dessas palavras na descrição
+        # word, count_word = freq(string_desc)
+        # #
 
-        # Converter para dict, sendo chave a word e valor a frequencia da palavra
-        data = dict(zip(word, count_word ))
-        #print(data)
-        #
-        
-
-        # Cria a wordcloud baseada nos valores no dicionario gerado
-        wc = WordCloud(width=300, height=300, max_words=200).generate_from_frequencies(data)
-        
-        #plt.figure(figsize=(100,100))
-        #plt.imshow(wc)
-        
-        # Titulo do web app
-        html_wordcloud = """
-    <div style="background-color:blue;padding=25px">
-        <p style='text-align:center;font-size:25px;font-weight:bold;color:white'>Termos mais frequentes na Descrição</p>
-    </div>
-              """
-        st.markdown(html_wordcloud, unsafe_allow_html=True)
-        
-        # Plota a wordcloud gerada
-        fig = plt.figure(figsize=(12,12), dpi=100)
-        plt.imshow(wc, interpolation='bilinear')
-        plt.axis('off')
-        #plt.show()
-        st.pyplot(fig)
+        # # Converter para dict, sendo chave a word e valor a frequencia da palavra
+        # data = dict(zip(word, count_word ))
+        # #print(data)
+        # #
         
 
+        # # Cria a wordcloud baseada nos valores no dicionario gerado
+        # wc = WordCloud(width=300, height=300, max_words=200).generate_from_frequencies(data)
+        
+        # #plt.figure(figsize=(100,100))
+        # #plt.imshow(wc)
+        
+        # # Titulo do web app
+        # html_wordcloud = """
+    # <div style="background-color:blue;padding=25px">
+        # <p style='text-align:center;font-size:25px;font-weight:bold;color:white'>Termos mais frequentes na Descrição</p>
+    # </div>
+              # """
+        # st.markdown(html_wordcloud, unsafe_allow_html=True)
+        
+        # # Plota a wordcloud gerada
+        # fig = plt.figure(figsize=(12,12), dpi=100)
+        # plt.imshow(wc, interpolation='bilinear')
+        # plt.axis('off')
+        # #plt.show()
+        # st.pyplot(fig)
+        
 
-def get_version():
-    """
-    Funcao get_version retorna a data de criacao do arquivo csv.
-    Return: data
-    """
-    URL = "https://www.football-data.co.uk/brazil.php"
-    page = requests.get(URL)
 
-    soup = BeautifulSoup(page.content, "html.parser")
-    links = soup.find_all("i")
-    for link in links:
-        #print(link, "-",link.text)
-        version_data = str(link).replace('<i>Last updated:','').replace('</i>', '').strip()
-    #print('Última atualização:',version_data)
-    return version_data
+# def get_version():
+    # """
+    # Funcao get_version retorna a data de criacao do arquivo csv.
+    # Return: data
+    # """
+    # URL = "https://www.football-data.co.uk/brazil.php"
+    # page = requests.get(URL)
+
+    # soup = BeautifulSoup(page.content, "html.parser")
+    # links = soup.find_all("i")
+    # for link in links:
+        # #print(link, "-",link.text)
+        # version_data = str(link).replace('<i>Last updated:','').replace('</i>', '').strip()
+    # #print('Última atualização:',version_data)
+    # return version_data
     
-def get_data():
-    """
-    Funcao get_data traz o dataset csv.
-    Return: csv
-    """
-    URL = "https://www.football-data.co.uk/brazil.php"
-    page = requests.get(URL)
+# def get_data():
+    # """
+    # Funcao get_data traz o dataset csv.
+    # Return: csv
+    # """
+    # URL = "https://www.football-data.co.uk/brazil.php"
+    # page = requests.get(URL)
 
-    soup = BeautifulSoup(page.content, "html.parser")
+    # soup = BeautifulSoup(page.content, "html.parser")
 
-    # Extrair a linha que tem a string CSV, exatamente onde tem a url para baixar o arquivo csv.
-    links = soup.find_all("a")
-    for link in links:
-        if link.text == 'CSV':
-            #print(link, "-",link.text)
-            link_csv = str(link).replace('<a href="','').replace('">CSV</a>', '')
-    #print(link_csv)
+    # # Extrair a linha que tem a string CSV, exatamente onde tem a url para baixar o arquivo csv.
+    # links = soup.find_all("a")
+    # for link in links:
+        # if link.text == 'CSV':
+            # #print(link, "-",link.text)
+            # link_csv = str(link).replace('<a href="','').replace('">CSV</a>', '')
+    # #print(link_csv)
 
-    url = 'https://www.football-data.co.uk/'
+    # url = 'https://www.football-data.co.uk/'
 
-    url_csv = url+link_csv
+    # url_csv = url+link_csv
 
-    df = pd.read_csv(url_csv)
-    return df
+    # df = pd.read_csv(url_csv)
+    # return df
 
-def get_gols(time, df):
-    """
-      Funcao get_gols o total de gols que um time fez ou levou.
-      input: time (string), df (dataframe)
-      return: int
-    """
-    gols_marcados = 0
-    gols_levados = 0
-    #print("\nSeason:", season)
-    for index, row in df.iterrows():
-        if row['Home'] == time:
-            gols_marcados    = int(gols_marcados + row['HG'])
-            gols_levados = int(gols_levados + row['AG'])
-        elif row['Away'] == time:
-            gols_marcados    = int(gols_marcados + row['AG'])
-            gols_levados = int(gols_levados + row['HG'])
-    #print(time.upper())
-    print("\tTotal gols marcados:",int(gols_marcados))
-    print("\tTotal gols levados:",int(gols_levados))
-    return (gols_marcados, gols_levados)
+# def get_gols(time, df):
+    # """
+      # Funcao get_gols o total de gols que um time fez ou levou.
+      # input: time (string), df (dataframe)
+      # return: int
+    # """
+    # gols_marcados = 0
+    # gols_levados = 0
+    # #print("\nSeason:", season)
+    # for index, row in df.iterrows():
+        # if row['Home'] == time:
+            # gols_marcados    = int(gols_marcados + row['HG'])
+            # gols_levados = int(gols_levados + row['AG'])
+        # elif row['Away'] == time:
+            # gols_marcados    = int(gols_marcados + row['AG'])
+            # gols_levados = int(gols_levados + row['HG'])
+    # #print(time.upper())
+    # print("\tTotal gols marcados:",int(gols_marcados))
+    # print("\tTotal gols levados:",int(gols_levados))
+    # return (gols_marcados, gols_levados)
 
-def get_resultados(time, df):
-    """
-      Funcao get_resultados retorna o total de vitorias, derrotas e empates de um time.
-      Traz também os times que ele enfrentou e a pontuação no momento.
-      Input: time (string), df (dataframe)
-      Return: int e string
-    """
-    jogo = 1
-    vitorias = 0
-    lista_v = []
-    empates = 0
-    lista_e = []
-    derrotas = 0
-    lista_d = []
-    lista_placar_v = []
-    lista_placar_d = []
-    lista_placar_e = []
-    for index, row in df.iterrows():
-        #print("\n\nAno:", row['Season'])
-        # VITORIAS
-        if row['Home'] == time and row['HG'] > row['AG']:
-            # Jogo em casa
-            vitorias    = int(vitorias + 1)
-            placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- VITORIA em CASA -->", placar)
-            lista_placar_v.append(placar) # Placar da vitoria em  casa
-            lista_v.append(row['Away']) # Time visitante que perdeu
-        elif row['Away'] == time and row['AG'] > row['HG']:
-            # Jogo visitante
-            vitorias    = int(vitorias + 1)
-            lista_v.append(row['Home']) # Time da casa que perdeu
-            placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- VITORIA FORA de CASA -->", placar)
-            lista_placar_v.append(placar) # Placar da vitoria como visitane
+# def get_resultados(time, df):
+    # """
+      # Funcao get_resultados retorna o total de vitorias, derrotas e empates de um time.
+      # Traz também os times que ele enfrentou e a pontuação no momento.
+      # Input: time (string), df (dataframe)
+      # Return: int e string
+    # """
+    # jogo = 1
+    # vitorias = 0
+    # lista_v = []
+    # empates = 0
+    # lista_e = []
+    # derrotas = 0
+    # lista_d = []
+    # lista_placar_v = []
+    # lista_placar_d = []
+    # lista_placar_e = []
+    # for index, row in df.iterrows():
+        # #print("\n\nAno:", row['Season'])
+        # # VITORIAS
+        # if row['Home'] == time and row['HG'] > row['AG']:
+            # # Jogo em casa
+            # vitorias    = int(vitorias + 1)
+            # placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
+            # print("\n",row['Season'],"- VITORIA em CASA -->", placar)
+            # lista_placar_v.append(placar) # Placar da vitoria em  casa
+            # lista_v.append(row['Away']) # Time visitante que perdeu
+        # elif row['Away'] == time and row['AG'] > row['HG']:
+            # # Jogo visitante
+            # vitorias    = int(vitorias + 1)
+            # lista_v.append(row['Home']) # Time da casa que perdeu
+            # placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
+            # print("\n",row['Season'],"- VITORIA FORA de CASA -->", placar)
+            # lista_placar_v.append(placar) # Placar da vitoria como visitane
 
-        # DERROTAS
-        elif row['Home'] == time and row['HG'] < row['AG']:
-            # Jogo em casa
-            derrotas     = int(derrotas + 1)
-            lista_d.append(row['Away'])
-            placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- DERROTA em CASA -->", placar)
-            lista_placar_d.append(placar) # Placar da derrota em casa
-        elif row['Away'] == time and row['AG'] < row['HG']:
-            # Jogo como visitante
-            derrotas     = int(derrotas + 1)
-            lista_d.append(row['Home'])# Time da casa que ganhou
-            placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- DERROTA FORA de  CASA -->", placar)
-            lista_placar_d.append(placar)
+        # # DERROTAS
+        # elif row['Home'] == time and row['HG'] < row['AG']:
+            # # Jogo em casa
+            # derrotas     = int(derrotas + 1)
+            # lista_d.append(row['Away'])
+            # placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
+            # print("\n",row['Season'],"- DERROTA em CASA -->", placar)
+            # lista_placar_d.append(placar) # Placar da derrota em casa
+        # elif row['Away'] == time and row['AG'] < row['HG']:
+            # # Jogo como visitante
+            # derrotas     = int(derrotas + 1)
+            # lista_d.append(row['Home'])# Time da casa que ganhou
+            # placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
+            # print("\n",row['Season'],"- DERROTA FORA de  CASA -->", placar)
+            # lista_placar_d.append(placar)
 
-        # EMPATES
-        elif row['Home'] == time and row['HG'] == row['AG'] and row['Res'] == 'D':
-            # Jogo em casa
-            empates = int(empates +1)
-            lista_e.append(row['Away']) # Time visitante com quem empatou
-            placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- EMPATE em CASA -->", placar)
-            lista_placar_e.append(placar) # Placar do empate em casa
+        # # EMPATES
+        # elif row['Home'] == time and row['HG'] == row['AG'] and row['Res'] == 'D':
+            # # Jogo em casa
+            # empates = int(empates +1)
+            # lista_e.append(row['Away']) # Time visitante com quem empatou
+            # placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
+            # print("\n",row['Season'],"- EMPATE em CASA -->", placar)
+            # lista_placar_e.append(placar) # Placar do empate em casa
 
-        elif row['Away'] == time and row['HG'] == row['AG'] and row['Res'] == 'D':
-            # Jogo como visitante
-            empates = int(empates +1)
-            lista_e.append(row['Home']) # Time da casa com quem empatou
-            placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-            print("\n",row['Season'],"- EMPATE FORA de CASA -->", placar)
-            lista_placar_e.append(placar)
+        # elif row['Away'] == time and row['HG'] == row['AG'] and row['Res'] == 'D':
+            # # Jogo como visitante
+            # empates = int(empates +1)
+            # lista_e.append(row['Home']) # Time da casa com quem empatou
+            # placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
+            # print("\n",row['Season'],"- EMPATE FORA de CASA -->", placar)
+            # lista_placar_e.append(placar)
 
-        jogo = jogo +1
+        # jogo = jogo +1
 
 
-    pontos = vitorias*3 + empates
-    #print(time.upper())
-    print("\tTotal vitorias",int(vitorias))
-    lista_v = str(lista_v).replace("'",'').replace('[','').replace(']','')
-    print("\tVitoria contra:", lista_v)
+    # pontos = vitorias*3 + empates
+    # #print(time.upper())
+    # print("\tTotal vitorias",int(vitorias))
+    # lista_v = str(lista_v).replace("'",'').replace('[','').replace(']','')
+    # print("\tVitoria contra:", lista_v)
 
-    print("\tTotal derrotas:",derrotas)
-    lista_d = str(lista_d).replace("'",'').replace('[','').replace(']','')
-    print("\tDerrota para:",lista_d)
+    # print("\tTotal derrotas:",derrotas)
+    # lista_d = str(lista_d).replace("'",'').replace('[','').replace(']','')
+    # print("\tDerrota para:",lista_d)
 
-    print("\tTotal empates:",empates)
-    lista_e = str(lista_e).replace("'",'').replace('[','').replace(']','')
-    print("\tEmpate com:",lista_e)
-    #placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
-    #lista_placar_e.append(placar)
+    # print("\tTotal empates:",empates)
+    # lista_e = str(lista_e).replace("'",'').replace('[','').replace(']','')
+    # print("\tEmpate com:",lista_e)
+    # #placar = row['Home']+'-'+str(row['HG'])+'X'+str(row['AG'])+'-'+(row['Away'])
+    # #lista_placar_e.append(placar)
 
-    print("\tPontos:", pontos)
-    return (vitorias, derrotas, empates, pontos, lista_v, lista_d, lista_e, lista_placar_v, lista_placar_d, lista_placar_e)
+    # print("\tPontos:", pontos)
+    # return (vitorias, derrotas, empates, pontos, lista_v, lista_d, lista_e, lista_placar_v, lista_placar_d, lista_placar_e)
 
     
     
@@ -379,28 +377,28 @@ def main():
     lista_intervalo = []
     
     
-    for f in glob.iglob("CSV/*.csv"): # generator, search immediate subdirectories
-        #st.write(f)
+    # for f in glob.iglob("CSV/*.csv"): # generator, search immediate subdirectories
+        # #st.write(f)
 
-        if str(f).startswith('CSV/indeed_CD'):
-            lista_CD.append(f)
-            temp = f.replace('indeed_CD_','').replace('.csv','').replace('CSV/','')
-            lista_CD.append(temp)
+        # if str(f).startswith('CSV/indeed_CD'):
+            # lista_CD.append(f)
+            # temp = f.replace('indeed_CD_','').replace('.csv','').replace('CSV/','')
+            # lista_CD.append(temp)
          
-        if f.startswith('CSV/indeed_AD'):
-            lista_AD.append(f)
-            temp = f.replace('indeed_AD_','').replace('.csv','').replace('CSV/','')
-            lista_AD.append(temp)
+        # if f.startswith('CSV/indeed_AD'):
+            # lista_AD.append(f)
+            # temp = f.replace('indeed_AD_','').replace('.csv','').replace('CSV/','')
+            # lista_AD.append(temp)
 
-        if f.startswith('CSV/indeed_EML'):
-            lista_EML.append(f)
-            temp = f.replace('indeed_EML_','').replace('.csv','').replace('CSV/','')
-            lista_EML.append(temp)
+        # if f.startswith('CSV/indeed_EML'):
+            # lista_EML.append(f)
+            # temp = f.replace('indeed_EML_','').replace('.csv','').replace('CSV/','')
+            # lista_EML.append(temp)
 
-        if f.startswith('CSV/indeed_ED'):
-            lista_ED.append(f)
-            temp = f.replace('indeed_ED_','').replace('.csv','').replace('CSV/','')
-            lista_ED.append(temp)
+        # if f.startswith('CSV/indeed_ED'):
+            # lista_ED.append(f)
+            # temp = f.replace('indeed_ED_','').replace('.csv','').replace('CSV/','')
+            # lista_ED.append(temp)
 
 
     choice = st.sidebar.selectbox("Selecione uma opção",activities)
@@ -412,13 +410,8 @@ def main():
 
     #st.write('Atualizacao:'+str(get_version()))      
     if choice == 'Classificação Atual':
-        st.sidebar.markdown('##   Última atualização dia: '+" "+str(get_version()))
-
-        
-
-    
-    
-  
+        #st.sidebar.markdown('##   Última atualização dia: '+" "+str(get_version()))
+        st.sidebar.markdown('## Atualizações ocorrem às terças-feiras')
     
     
     if choice == activities[0]:
@@ -447,12 +440,12 @@ def main():
         #df = pd.read_csv("CSV/dados_2012_2023.csv")
         saldo_gols = df['gols_marcados'] - df['gols_levados']
         df['saldo_gols'] = saldo_gols
-        df_2023 = df.loc[df.season == 2023].sort_values(by= ['pontos','saldo_gols'], ascending=False)
+        df_2023 = df.loc[df.season == 2023].sort_values(by= ['pontos', 'vitorias','saldo_gols'], ascending=False)
         l_posicao = list(df_2023.times)
         
         #st.dataframe(df_2023[['times', 'pontos', 'saldo_gols']])
-
-       
+        pontuacao = df_2023['pontos'].to_list()
+        
         col1, col2 = st.columns(2)
     
         col11, col22 = st.columns(2)
@@ -461,67 +454,67 @@ def main():
         
         
         #col_teste1.header(l_posicao[0])
-        col_teste1.text("Primeiro")
+        col_teste1.text("Primeiro - "+str(pontuacao[0]))
         col_teste1.image(dict_times.get(l_posicao[0]), width=size_1+extra)
         
         #col_teste2.header(l_posicao[1])
-        col_teste1.text("Segundo")
+        col_teste1.text("Segundo - "+str(pontuacao[1]))
         col_teste1.image(dict_times.get(l_posicao[1]), width=size_2_20+extra)
 
         #col_teste2.header(l_posicao[2])
-        col_teste1.text("Terceiro")
+        col_teste1.text("Terceiro - "+str(pontuacao[2]))
         col_teste1.image(dict_times.get(l_posicao[2]), width=size_2_20+extra)
 
         #col_teste2.header(l_posicao[3])
-        col_teste1.text("Quarto")
+        col_teste1.text("Quarto - "+str(pontuacao[3]))
         col_teste1.image(dict_times.get(l_posicao[3]), width=size_2_20+extra)
         
         #col_teste2.header(l_posicao[4])
-        col_teste1.text("Quinto")
+        col_teste1.text("Quinto - "+str(pontuacao[4]))
         col_teste1.image(dict_times.get(l_posicao[4]), width=size_2_20+extra)
         
         #col_teste2.header(l_posicao[5])
-        col_teste1.text("Sexto")
+        col_teste1.text("Sexto - "+str(pontuacao[5]))
         col_teste1.image(dict_times.get(l_posicao[5]), width=size_2_20+extra)
         
         #col_teste2.header(l_posicao[6])
-        col_teste2.text("Setimo")
+        col_teste2.text("Setimo - "+str(pontuacao[6]))
         col_teste2.image(dict_times.get(l_posicao[6]), width=size_2_20+extra)
         
         #col_teste2.header(l_posicao[7])
-        col_teste2.text("Oitavo")
+        col_teste2.text("Oitavo - "+str(pontuacao[7]))
         col_teste2.image(dict_times.get(l_posicao[7]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[8])
-        col_teste2.text("Nono")
+        col_teste2.text("Nono - "+str(pontuacao[8]))
         col_teste2.image(dict_times.get(l_posicao[8]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[9])
-        col_teste2.text("Decimo")
+        col_teste2.text("Decimo - "+str(pontuacao[9]))
         col_teste2.image(dict_times.get(l_posicao[9]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[10])
-        col_teste2.text("Decimo Primeiro")
+        col_teste2.text("Decimo Primeiro - "+str(pontuacao[10]))
         col_teste2.image(dict_times.get(l_posicao[10]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[11])
-        col_teste3.text("Decimo Segundo")
+        col_teste3.text("Decimo Segundo - "+str(pontuacao[11]))
         col_teste3.image(dict_times.get(l_posicao[11]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[12])
-        col_teste3.text("Decimo Terceiro")
+        col_teste3.text("Decimo Terceiro - "+str(pontuacao[12]))
         col_teste3.image(dict_times.get(l_posicao[12]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[13])
-        col_teste3.text("Decimmo Quarto")
+        col_teste3.text("Decimmo Quarto - "+str(pontuacao[13]))
         col_teste3.image(dict_times.get(l_posicao[13]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[14])
-        col_teste3.text("Decimo Quinto")
+        col_teste3.text("Decimo Quinto - "+str(pontuacao[14]))
         col_teste3.image(dict_times.get(l_posicao[14]), width=size_2_20+extra)
         
         #col_teste3.header(l_posicao[15])
-        col_teste3.text("Decimmo Sexto")
+        col_teste3.text("Decimmo Sexto - "+str(pontuacao[15]))
         col_teste3.image(dict_times.get(l_posicao[15]), width=size_2_20+extra)
         
         
@@ -529,21 +522,21 @@ def main():
        
         #col_teste4.header('Zona de Rebaixamento: '+l_posicao[16])
         col_teste4.header('Zona de Rebaixamento: ')
-        col_teste4.text("Decimmo Setimo")
+        col_teste4.text("Decimmo Setimo - "+str(pontuacao[16]))
         col_teste4.image(dict_times.get(l_posicao[16]), width=size_2_20+extra_reb)
         
         
         #col_teste4.header(l_posicao[17])
-        col_teste4.text("Decimmo Oitavo")
+        col_teste4.text("Decimmo Oitavo - "+str(pontuacao[17]))
         col_teste4.image(dict_times.get(l_posicao[17]), width=size_2_20+extra_reb)
         
         #col_teste4.header(l_posicao[18])
-        col_teste4.text("Decimmo Nono")
+        col_teste4.text("Decimmo Nono - "+str(pontuacao[18]))
         col_teste4.image(dict_times.get(l_posicao[18]), width=size_2_20+extra_reb)
     
     
         #col_teste4.header(l_posicao[19])
-        col_teste4.text("Vigesimo")
+        col_teste4.text("Vigesimo - "+str(pontuacao[19]))
         col_teste4.image(dict_times.get(l_posicao[19]), width=size_2_20+extra_reb)
     
         
@@ -751,6 +744,9 @@ def main():
         lista_times = list(set(df['times']))
         gols_marcados = []
         gols_tomados = []
+        vitorias = []
+        derrotas = []
+        empates = []
         total_gols = 0
         for time in lista_times:
             temp = df.loc[df.times == time]
@@ -759,12 +755,23 @@ def main():
 
             gols_levados = temp.gols_levados.sum()
             gols_tomados.append(gols_levados)
+            
+            total_v = temp.vitorias.sum()
+            vitorias.append(total_v)
+            
+            total_d = temp.derrotas.sum()
+            derrotas.append(total_d)
+            
+            total_e = temp.empates.sum()
+            empates.append(total_e)
+            
+            
 
             total_gols = total_gols + gols_pro
             #print("\nTime:", time, "Gols marcados:", gols_pro)
 
-        data = {'TIME': lista_times, 'GOLS_MARCADOS':gols_marcados, 'GOLS_TOMADOS': gols_tomados}
-        df_geral = pd.DataFrame(data).sort_values(by='GOLS_MARCADOS', ascending=False)
+        data = {'TIME': lista_times, 'GOLS_PRO':gols_marcados, 'GOLS_CONTRA': gols_tomados, 'VITORIAS':vitorias, 'DERROTAS':derrotas, 'EMPATES':empates}
+        df_geral = pd.DataFrame(data).sort_values(by='GOLS_PRO', ascending=False)
         
         st.sidebar.markdown(" ## Total de Gols:    "+ str(total_gols))
     
@@ -780,11 +787,13 @@ def main():
         
         st.subheader("Built with Streamlit")
         
-        st.markdown("#### Dados coletados via scrap usando: request e BeautifulSoup.")
+        st.markdown("##### Dados coletados via scrap usando: request e BeautifulSoup.")
+        
+        st.markdown("##### Classificação considera a pontuação. Em caso de empate, total de vitórias e saldo de gols.")
 
-        st.markdown("#### Fonte dos dados: ")
-        st.markdown("#### https://www.football-data.co.uk/")
-        st.markdown("#### As atualizações do campeonato atual ocorrem normalmente às terças-feiras, pois estão agendados jogos na segunda-feira.")
+        st.markdown("##### Fonte dos dados: ")
+        st.markdown("##### https://www.football-data.co.uk/")
+        st.markdown("##### As atualizações do campeonato atual ocorrem normalmente às terças-feiras, pois alguns times podem jogar na segunda-feira.")
       
         st.subheader("Silvio Lima")
         
