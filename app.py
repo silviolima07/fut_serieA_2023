@@ -126,9 +126,9 @@ def main():
         #width2 = 120
         #width_reb = 90
     
-        size_1= st.sidebar.slider('Primeiro', 80, 110, 80)
+        size_1= st.sidebar.slider('Primeiro', 80, 140, 80)
     
-        size_2_20= st.sidebar.slider("2 a 20", 50,80)
+        size_2_20= st.sidebar.slider("Segundo ao Vigesimo", 30,90,30)
     
         extra = 20
         extra_reb = 10
