@@ -74,8 +74,8 @@ def get_gols(time, df):
             gols_marcados    = int(gols_marcados + row['AG'])
             gols_levados = int(gols_levados + row['HG'])
     #print(time.upper())
-    print("\tTotal gols marcados:",int(gols_marcados))
-    print("\tTotal gols levados:",int(gols_levados))
+    #print("\tTotal gols marcados:",int(gols_marcados))
+    #print("\tTotal gols levados:",int(gols_levados))
     return (gols_marcados, gols_levados)
 
 def get_resultados(time, df):
