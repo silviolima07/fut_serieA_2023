@@ -193,7 +193,7 @@ l_placar_e = []
 # Lista com os anos dos dados na base
 seasons = list(df['Season'])
 seasons = list(set(seasons))
-season.sort() # ordenando os anos de 2012 a 2023
+seasons.sort() # ordenando os anos de 2012 a 2023
 #seasons = [2023]
 for season in seasons:
     sleep(randint(1,2))
