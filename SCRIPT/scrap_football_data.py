@@ -193,6 +193,7 @@ l_placar_e = []
 # Lista com os anos dos dados na base
 seasons = list(df['Season'])
 seasons = list(set(seasons))
+season.sort() # ordenando os anos de 2012 a 2023
 #seasons = [2023]
 for season in seasons:
     sleep(randint(1,2))
@@ -202,10 +203,10 @@ for season in seasons:
     times = list(set(times))
     #times = ['Santos', 'Gremio', 'Bahia'] # Para testar com apenas um time
     n=1
-
+    print("\nColetando dados dos times")
     for time in times:
 
-        print('\n',n,'-',time)
+        #print('\n',n,'-',time)
         n = n+1
         l_seasons.append(season)
         l_times.append(time)
@@ -245,8 +246,8 @@ df_br = pd.DataFrame(data)
 
 df_br.sort_values(by='pontos', ascending=False)
 
-print("Dataset df_br:", df_br.shape)
-print("Dataset df_br:", df_br.columns)
+print("\nDataset df_br:\n", df_br.shape)
+print("\nDataset df_br:\n", df_br.columns)
 
 df_br.times.replace('Atletico-PR', 'Athletico-PR', inplace=True)
 df_br.to_csv("CSV/dados_2012_2023.csv")
