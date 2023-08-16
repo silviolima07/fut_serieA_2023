@@ -38,6 +38,8 @@ def main():
    
     logo_seriea  = Image.open("Images/times/logo_seriea.png")
     campo  = Image.open("Images/times/campo.png")
+    projeto  = Image.open("Images/projeto.png")
+    tela  = Image.open("Images/tela1.png")
     
     
     botafogo = Image.open("Images/times/botafogo.png")
@@ -88,7 +90,7 @@ def main():
     
     st.sidebar.image(logo_seriea,caption="", width=300)
 
-    activities = ["Classificação Atual",'Campanhas 2012 a 2023',"Resumo","Sobre"]
+    activities = ["Classificação Atual",'Campanhas 2012 a 2023',"Resumo", "Projeto", "Sobre"]
     lista_CD= []
     lista_AD=[]
     lista_EML=[]
@@ -109,6 +111,8 @@ def main():
     if choice == 'Classificação Atual':
         #st.sidebar.markdown('##   Última atualização dia: '+" "+str(get_version()))
         st.sidebar.markdown('## Atualizado às terças-feiras')
+        
+     
     
     
     if choice == activities[0]:
@@ -474,6 +478,19 @@ def main():
         st.sidebar.markdown(" ## Total de Gols:    "+ str(total_gols))
     
         st.table(df_geral.reset_index(drop=True))
+        
+    elif choice == activities[3]:
+        html_page_projeto = """
+    <div style="background-color:white;padding=30px">
+        <p style='text-align:left;font-size:30px;font-weight:bold;color:red'>Layout do Projeto</p>
+    </div>
+              """
+        st.markdown(html_page_projeto, unsafe_allow_html=True)
+        
+        st.image(projeto, width = 800)
+        #st.image(tela, use_column_width='auto')
+
+        
     
     elif choice == 'Sobre':
         html_page_about = """
