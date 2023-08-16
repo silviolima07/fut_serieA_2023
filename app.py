@@ -38,8 +38,8 @@ def main():
    
     logo_seriea  = Image.open("Images/times/logo_seriea.png")
     campo  = Image.open("Images/times/campo.png")
-    projeto  = Image.open("Images/projeto.png")
-    tela  = Image.open("Images/tela1.png")
+    projeto  = Image.open("Images/projeto2.png")
+    #tela  = Image.open("Images/tela1.png")
     
     
     botafogo = Image.open("Images/times/botafogo.png")
