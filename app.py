@@ -141,7 +141,15 @@ def main():
         #df = pd.read_csv("CSV/dados_2012_2023.csv")
         saldo_gols = df['gols_marcados'] - df['gols_levados']
         df['saldo_gols'] = saldo_gols
+        
         df_2023 = df.loc[df.season == 2023].sort_values(by= ['pontos', 'vitorias', 'saldo_gols'], ascending=False)
+        
+        df_2023['jogos'] = df_2023['vitorias']+df_2023['derrotas']+df_2023['empates']
+        
+        rodada_numero = df_2023['jogos'].max()
+        
+        st.subheader('Rodada: '+ str(rodada_numero)+(' de 38'))     
+        
         l_posicao = list(df_2023.times)
         
              
