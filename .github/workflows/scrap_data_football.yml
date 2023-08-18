@@ -1,5 +1,4 @@
 name: Scrap of data
-
 on:
   #workflow_dispatch:
   schedule:
