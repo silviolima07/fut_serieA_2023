@@ -39,9 +39,7 @@ jobs:
           #author_email: silviolima07@gmail.com
           default_author: github_actions
           message: 'Update dataset'
-          run: |
-            git pull
-            git push
+          pull: '--rebase --autostash ...'
           add: 'CSV/dados_2012_2023.csv'
 
     
