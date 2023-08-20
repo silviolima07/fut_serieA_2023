@@ -251,6 +251,14 @@ print("\nDataset df_br:\n", df_br.columns)
 
 df_br.times.replace('Atletico-PR', 'Athletico-PR', inplace=True)
 df_br.to_csv("CSV/dados_2012_2023.csv")
+#############################
+df_2023 = df_br.loc[df_br.season == 2023].sort_values(by= ['pontos', 'vitorias', 'saldo_gols'], ascending=False)
+        
+df_2023['jogos'] = df_2023['vitorias']+df_2023['derrotas']+df_2023['empates']
+        
+rodada_numero = df_2023['jogos'].max()
+
+print("Rodada atual: ", rodada_numero)
 
 
 
