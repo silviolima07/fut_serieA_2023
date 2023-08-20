@@ -254,12 +254,12 @@ df_br.to_csv("CSV/dados_2012_2023.csv")
 #############################
 temp = df_br[['season','vitorias', 'derrotas', 'empates']].copy()
 temp_2023 = temp.loc[temp.season == 2023]
-print("Dataset temp:", temp_2023.head())
+#print("Dataset temp:", temp_2023.head())
 temp_2023['jogos'] = temp_2023['vitorias']+temp_2023['derrotas']+temp_2023['empates']
         
 rodada_numero = temp_2023['jogos'].max()
 
-print("Rodada atual: ", rodada_numero)
+print("Rodada atual do dataset no site: ", rodada_numero)
 
 
 
