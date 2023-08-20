@@ -33,7 +33,7 @@ jobs:
                   
   
     - name: Commit changes
-      uses: EndBug/add-and-commit@v9
+      uses: EndBug/add-and-commit@v9.0.1
       with:
           #author_name: Silvio
           #author_email: silviolima07@gmail.com
