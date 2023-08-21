@@ -27,9 +27,10 @@ jobs:
       
     - name: do_scrap_football
       run: |
-          echo "Starting scrap..."
+          echo "Starting scrap data 2012-2022.."
           python SCRIPT/scrap_football_data.py
-          python SCRIPT/scrap_cbf_seriea.py
+          echo "Starting scrap data 2023"
+          python SCRIPT/scrap_2023.py
           echo "Scrap done, dataset created"; ls -l CSV
                   
   
