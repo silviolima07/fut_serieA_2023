@@ -47,7 +47,7 @@ def main():
     bahia = Image.open("Images/times/bahia.png")
     america = Image.open("Images/times/america-mineiro.png")
    
-    atletico_pr    = Image.open("Images/times/athletico-paranaense.png")
+    athletico_pr    = Image.open("Images/times/athletico-paranaense.png")
     atletico_mg    = Image.open("Images/times/atletico-mineiro.png")
     
     corinthians    = Image.open("Images/times/corinthians.png")
@@ -67,42 +67,39 @@ def main():
     saopaulo    = Image.open("Images/times/sao-paulo.png")
     vasco    = Image.open("Images/times/vasco-da-gama.png")
     
-    dict_times = {'Botafogo RJ': botafogo,
-                   'Flamengo RJ': flamengo,
-                   'Bragantino': bragantino,
-                   'Fluminense': fluminense,
-                   'Palmeiras': palmeiras,
-                   'Gremio': gremio,
-                   'Cuiaba': cuiaba,
-                   'Athletico-PR': atletico_pr,
-                   'Sao Paulo': saopaulo,
-                   'Cruzeiro': cruzeiro,
-                   'Atletico-MG': atletico_mg,
-                   'Internacional':internacional,
-                   'Fortaleza': fortaleza,
-                   'Corinthians': corinthians,
-                   'Goias': goias,
-                   'Bahia': bahia,
-                   'Santos': santos,
-                   'Coritiba': coritiba,
-                   'Vasco': vasco,
-                   'America MG': america}
+    dict_times = {'botafogo': botafogo,
+                   'flamengo': flamengo,
+                   'red-bull-bragantino': bragantino,
+                   'fluminense': fluminense,
+                   'palmeiras': palmeiras,
+                   'gremio': gremio,
+                   'cuiaba': cuiaba,
+                   'athletico-pr': athletico_pr,
+                   'sao-paulo': saopaulo,
+                   'cruzeiro': cruzeiro,
+                   'atletico-mg': atletico_mg,
+                   'internacional':internacional,
+                   'fortaleza': fortaleza,
+                   'corinthians': corinthians,
+                   'goias': goias,
+                   'bahia': bahia,
+                   'santos': santos,
+                   'coritiba': coritiba,
+                   'vasco': vasco,
+                   'america-mg': america}
     
     st.sidebar.image(logo_seriea,caption="", width=300)
 
     activities = ["Classificação Atual",'Campanhas 2012 a 2023',"Resumo", "Projeto", "Sobre"]
-    lista_CD= []
-    lista_AD=[]
-    lista_EML=[]
-    lista_ED=[]
-    lista_intervalo = []
-    
+     
     
     
 
     choice = st.sidebar.selectbox("Selecione uma opção",activities)
     
     df = pd.read_csv("CSV/dados_2012_2023.csv")
+    
+    df_2023 = pd.read_csv("CSV/dados_2023.csv")
 
     # Definir a data da última atualização
 
@@ -115,7 +112,7 @@ def main():
      
     
     
-    if choice == activities[0]:
+    if choice == activities[0]: # Classificação atual
         
         html_page_activiy_0 = """
     <div style="background-color:white;padding=30px">
@@ -139,20 +136,24 @@ def main():
 
         
         #df = pd.read_csv("CSV/dados_2012_2023.csv")
-        saldo_gols = df['gols_marcados'] - df['gols_levados']
-        df['saldo_gols'] = saldo_gols
+        #saldo_gols = df_2023['saldo_gols']
+        #df['saldo_gols'] = saldo_gols
         
-        df_2023 = df.loc[df.season == 2023].sort_values(by= ['pontos', 'vitorias', 'saldo_gols'], ascending=False)
+        df_2023 = df_2023.sort_values(by= ['pontos', 'vitorias', 'saldo_gols'], ascending=False)
         
-        df_2023['jogos'] = df_2023['vitorias']+df_2023['derrotas']+df_2023['empates']
+        #df_2023['jogos'] = df_2023['vitorias']+df_2023['derrotas']+df_2023['empates']
         
         rodada_numero = df_2023['jogos'].max()
         
         st.subheader('Rodada: '+ str(rodada_numero)+(' de 38'))     
         
+        
+        
         l_posicao = list(df_2023.times)
         
-             
+        #st.write(l_posicao)
+        
+        #     
         #st.dataframe(df_2023[['times', 'pontos', 'saldo_gols']])
         #df_2023['pontos'] = df_2023['pontos'].astype('int')
         pontuacao = df_2023['pontos'].to_list()
@@ -163,10 +164,11 @@ def main():
         
         col_teste1,col_teste2, col_teste3, col_teste4 = st.columns(4)
         
-        
+                
         #col_teste1.header(l_posicao[0])
         col_teste1.text("Primeiro - "+str(pontuacao[0]))
-        col_teste1.image(dict_times.get(l_posicao[0]), width=size_1+extra)
+        col_teste1.image(dict_times.get(l_posicao[0]))
+        
         
         #col_teste2.header(l_posicao[1])
         col_teste1.text("Segundo - "+str(pontuacao[1]))
