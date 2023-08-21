@@ -68,7 +68,7 @@ df_2023 = pd.DataFrame(lista_score2[0:20], columns=colunas)
 df_2023['times'] = lista_times
 df_2023 = df_2023[['times','pontos', 'jogos', 'vitorias', 'empates', 'derrotas', 'gols_marcados', 'gols_contra', 'saldo_gols', 'aproveitamento']]
 
-temp = np.where(df.times == 'athletico', "athletico-pr",df_2023.times)
+temp = np.where(df_2023.times == 'athletico', "athletico-pr",df_2023.times)
 df_2023['times'] = temp
 
 df_2023.sort_values(by=['pontos','vitorias','saldo_gols'], ascending=False)
