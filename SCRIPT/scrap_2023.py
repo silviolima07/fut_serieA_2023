@@ -7,6 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/16uIF-PNDlEzFi3EUFSxgwcWpH-Vbo578
 """
 import pandas as pd
+import numpy as np
 import requests
 from bs4 import BeautifulSoup
 
