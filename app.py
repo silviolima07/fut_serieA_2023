@@ -273,7 +273,9 @@ def main():
         choice_time = st.sidebar.selectbox("Time",l_times)
         df_time = df.loc[df.times == choice_time]
         
-        
+        # Remover 2023 da lista de season para escolha
+        # Pois a base não é atualizada constantemente
+        df_time = df_time.loc[df_time.season != 2023]
         
         l_seasons = sorted(set(df_time['season']))
         
