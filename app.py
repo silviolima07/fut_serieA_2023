@@ -142,7 +142,9 @@ def main():
         df_2023 = df_2023.sort_values(by= ['pontos', 'vitorias', 'saldo_gols'], ascending=False)
         
         #df_2023['jogos'] = df_2023['vitorias']+df_2023['derrotas']+df_2023['empates']
-        
+
+        st.write("Rodada")
+        st.write(df_2023['vitorias']+df_2023['derrotas']+df_2023['empates'])
         rodada_numero = df_2023['jogos'].max()
         
         st.subheader('Rodada: '+ str(rodada_numero)+(' de 38'))     
