@@ -143,18 +143,12 @@ def main():
         
         #df_2023['jogos'] = df_2023['vitorias']+df_2023['derrotas']+df_2023['empates']
 
-        st.write("Rodada")
-        st.write(df_2023['vitorias']+df_2023['derrotas']+df_2023['empates'])
         rodada_numero = df_2023['jogos'].max()
         
         st.subheader('Rodada: '+ str(rodada_numero)+(' de 38'))     
         
-        
-        
         l_posicao = list(df_2023.times)
-        
-        #st.write(l_posicao)
-        
+       
         #     
         #st.dataframe(df_2023[['times', 'pontos', 'saldo_gols']])
         #df_2023['pontos'] = df_2023['pontos'].astype('int')
@@ -261,7 +255,7 @@ def main():
     
         html_page_activiy_1 = """
     <div style="background-color:white;padding=30px">
-        <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>Campeonato Brasileiro de 2012 A 2023</p>
+        <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>Campeonato Brasileiro de 2012 A 2022</p>
     </div>
               """
         st.markdown(html_page_activiy_1, unsafe_allow_html=True)
