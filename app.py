@@ -90,7 +90,7 @@ def main():
     
     st.sidebar.image(logo_seriea,caption="", width=300)
 
-    activities = ["Classificação Atual", "Metricas",'Campanhas 2012 a 2022',"Resumo", "Projeto", "Sobre"]
+    activities = ["CLASSIFICAÇÃO ATUAL", "MÉTRICAS",'CAMPANHAS 2012 a 2022',"PARTICIPAÇÕES", "PROJETO", "SOBRE"]
      
     
     
@@ -458,20 +458,22 @@ def main():
     elif choice == activities[3]:
         html_page_resumo = """
     <div style="background-color:white;padding=30px">
-        <p style='text-align:left;font-size:30px;font-weight:bold;color:red'>Resumo de Participações (2012 a 2023)</p>
+        <p style='text-align:left;font-size:30px;font-weight:bold;color:red'>Participações de 2012 a 2022</p>
     </div>
               """
         st.markdown(html_page_resumo, unsafe_allow_html=True)
-        
-        lista_times = list(set(df['times']))
+
+        df_2012_2022 = df.loc[df.season != 2023]
+        lista_times = list(set(df_2012_2022['times']))
         gols_marcados = []
         gols_tomados = []
         vitorias = []
         derrotas = []
         empates = []
         total_gols = 0
+        
         for time in lista_times:
-            temp = df.loc[df.times == time]
+            temp = df_2012_2022.loc[df.times == time]
             gols_pro = temp.gols_marcados.sum()
             gols_marcados.append(gols_pro)
 
