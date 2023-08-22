@@ -90,7 +90,7 @@ def main():
     
     st.sidebar.image(logo_seriea,caption="", width=300)
 
-    activities = ["Classificação Atual",'Campanhas 2012 a 2023',"Resumo", "Projeto", "Sobre"]
+    activities = ["Classificação Atual",'Campanhas 2012 a 2022',"Resumo", "Projeto", "Sobre"]
      
     
     
