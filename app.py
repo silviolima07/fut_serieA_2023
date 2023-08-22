@@ -90,7 +90,7 @@ def main():
     
     st.sidebar.image(logo_seriea,caption="", width=300)
 
-    activities = ["Classificação Atual",'Campanhas 2012 a 2022',"Resumo", "Projeto", "Sobre"]
+    activities = ["Classificação Atual", "Metricas",'Campanhas 2012 a 2022',"Resumo", "Projeto", "Sobre"]
      
     
     
@@ -249,16 +249,24 @@ def main():
         col_teste4.image(dict_times.get(l_posicao[19]), width=size_2_20+extra_reb)
     
         
-    
-    
-    elif choice == activities[1]: # campanhas 2012  2023
-    
+    elif choice == activities[1]: # Metrica
+
         html_page_activiy_1 = """
+    <div style="background-color:white;padding=30px">
+        <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>Perfornance dos Times em 2023</p>
+    </div>
+              """
+        st.markdown(html_page_activiy_1, unsafe_allow_html=True)
+       st.table(df_2023.reset_index(drop=True))
+    
+    elif choice == activities[2]: # campanhas 2012  2023
+    
+        html_page_activiy_2 = """
     <div style="background-color:white;padding=30px">
         <p style='text-align:center;font-size:30px;font-weight:bold;color:red'>Campeonato Brasileiro de 2012 A 2022</p>
     </div>
               """
-        st.markdown(html_page_activiy_1, unsafe_allow_html=True)
+        st.markdown(html_page_activiy_2, unsafe_allow_html=True)
                 
         usecols = ['season', 'times', 'pontos', 'gols_marcados', 'gols_levados', 'vitorias', 'derrotas', 'empates',
                    'time_ganhou', 'time_derrota', 'time_empate', 'placar_vitoria', 'placar_derrota', 'placar_empate']
@@ -444,7 +452,7 @@ def main():
         if (flag_placar_empate):
           col2222.header('Placar Empates')            
         
-    elif choice == activities[2]:
+    elif choice == activities[3]:
         html_page_resumo = """
     <div style="background-color:white;padding=30px">
         <p style='text-align:left;font-size:30px;font-weight:bold;color:red'>Resumo de Participações (2012 a 2023)</p>
@@ -487,7 +495,7 @@ def main():
     
         st.table(df_geral.reset_index(drop=True))
         
-    elif choice == activities[3]:
+    elif choice == activities[4]:
         html_page_projeto = """
     <div style="background-color:white;padding=30px">
         <p style='text-align:left;font-size:30px;font-weight:bold;color:red'>Layout do Projeto</p>
