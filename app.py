@@ -258,7 +258,7 @@ def main():
               """
         st.markdown(html_page_activiy_1, unsafe_allow_html=True)
         df_2023 = df_2023[['times', 'pontos', 'jogos', 'vitorias', 'empates', 'derrotas', 'saldo_gols', 'aproveitamento']]
-        df_2023.rename(columns={'times':'TIME', 'pontos':'PONTOS', 'jogos':'JOGOS', 'vitorias': 'VITORIAS', 'derrotas':'DERROTAS', 'empates': 'EMPATES'}, inplace=True)
+        df_2023.rename(columns={'times':'TIME', 'pontos':'PONTOS', 'jogos':'JOGOS', 'vitorias': 'VITORIAS', 'derrotas':'DERROTAS', 'empates': 'EMPATES', 'saldo_gols':'SALDO_GOLS', 'aproveitamento':'%Aprov'}, inplace=True)
         st.table(df_2023.reset_index(drop=True))
     
     elif choice == activities[2]: # campanhas 2012  2023
