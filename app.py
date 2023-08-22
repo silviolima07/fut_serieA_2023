@@ -163,7 +163,7 @@ def main():
                 
         #col_teste1.header(l_posicao[0])
         col_teste1.text("Primeiro - "+str(pontuacao[0]))
-        col_teste1.image(dict_times.get(l_posicao[0]))
+        col_teste1.image(dict_times.get(l_posicao[0]), width=size_1+extra)
         
         
         #col_teste2.header(l_posicao[1])
