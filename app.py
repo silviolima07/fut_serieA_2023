@@ -257,7 +257,7 @@ def main():
     </div>
               """
         st.markdown(html_page_activiy_1, unsafe_allow_html=True)
-       st.table(df_2023.reset_index(drop=True))
+        st.table(df_2023.reset_index(drop=True)
     
     elif choice == activities[2]: # campanhas 2012  2023
     
