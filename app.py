@@ -513,7 +513,7 @@ def main():
 
         
     
-    elif choice == 'Sobre':
+    elif choice == 'SOBRE':
         html_page_about = """
     <div style="background-color:white;padding=30px">
         <p style='text-align:left;font-size:30px;font-weight:bold;color:red'>Saiba mais...</p>
