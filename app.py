@@ -39,7 +39,7 @@ def main():
     logo_seriea  = Image.open("Images/times/logo_seriea.png")
     campo  = Image.open("Images/times/campo.png")
     projeto  = Image.open("Images/projeto2.png")
-    #tela  = Image.open("Images/tela1.png")
+    z4  = Image.open("Images/z4_3.png")
     
     
     botafogo = Image.open("Images/times/botafogo.png")
@@ -133,6 +133,8 @@ def main():
     
         extra = 20
         extra_reb = 10
+        
+        extra_z4 = 150
 
         
         #df = pd.read_csv("CSV/dados_2012_2023.csv")
@@ -230,7 +232,8 @@ def main():
         # Ultimos 4 times
        
         #col_teste4.header('Zona de Rebaixamento: '+l_posicao[16])
-        col_teste4.header('Zona de Rebaixamento: ')
+        #col_teste4.header('Zona de Rebaixamento: ')
+        col_teste4.image(z4, width=size_2_20+extra_z4)
         col_teste4.text("Decimmo Setimo - "+str(pontuacao[16]))
         col_teste4.image(dict_times.get(l_posicao[16]), width=size_2_20+extra_reb)
         
