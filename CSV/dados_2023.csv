@@ -1,7 +1,7 @@
 ,times,pontos,jogos,vitorias,empates,derrotas,gols_marcados,gols_contra,saldo_gols,aproveitamento
 0,botafogo,48,20,15,3,2,11,35,24,80
 1,palmeiras,37,20,10,7,3,17,36,19,62
-2,flamengo,35,20,10,5,5,26,34,8,58
+2,flamengo,36,21,10,6,5,26,34,8,57
 3,fluminense,34,20,10,4,6,20,28,8,57
 4,gremio,33,19,10,3,6,25,29,4,58
 5,athletico-pr,32,20,9,5,6,23,29,6,53
@@ -11,8 +11,8 @@
 9,sao-paulo,28,20,7,7,6,19,24,5,47
 10,atletico-mg,27,20,7,6,7,18,22,4,45
 11,cruzeiro,25,20,6,7,7,17,20,3,42
-12,corinthians,24,19,6,6,7,22,21,-1,42
-13,internacional,24,20,6,6,8,24,17,-7,40
+12,internacional,25,21,6,7,8,24,17,-7,40
+13,corinthians,24,19,6,6,7,22,21,-1,42
 14,goias,23,20,6,5,9,28,19,-9,38
 15,bahia,21,20,5,6,9,25,22,-3,35
 16,santos,21,20,5,6,9,32,21,-11,35
